@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/ic_viaggi"
+        android:icon="@drawable/ic_viaggi"
+        android:title="I miei viaggi" />
+
+    <item
+        android:id="@+id/ic_nuovo"
+        android:icon="@drawable/ic_nuovo"
+        android:title="Nuovo viaggio"/>
+
+    <item
+        android:id="@+id/ic_impostazioni"
+        android:icon="@drawable/ic_impostazioni"
+        android:title="Impostazioni"/>
+</menu>

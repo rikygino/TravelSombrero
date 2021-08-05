@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="TitoloHome" type="id" />
+    <item name="textPartenza" type="id"/>
+    <item name="InserisciCitta" type="id"/>
+    <item name="editTextDatePartenza" type="id"/>
+    <item name="editTextDateRitorno" type="id" />
+    <item name="textTornare" type="id"/>
+    <item name="buttonRicerca" type="id"/>
+</resources>

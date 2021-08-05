@@ -1,0 +1,56 @@
+{
+  "project_info": {
+    "project_number": "143653158800",
+    "firebase_url": "https://travelsombrero-83e0f-default-rtdb.firebaseio.com",
+    "project_id": "travelsombrero-83e0f",
+    "storage_bucket": "travelsombrero-83e0f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:143653158800:android:9da9924c21dc202e87fd15",
+        "android_client_info": {
+          "package_name": "com.art.travelsombrero"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "143653158800-eobenph27er0u4qboua1k1s0m0a8v8qn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.art.travelsombrero",
+            "certificate_hash": "6e91e4d72847f4021efa17bcfd935059dc2f2c4d"
+          }
+        },
+        {
+          "client_id": "143653158800-fr2f4jatihb604gupv6pc9vmlr6i22bb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.art.travelsombrero",
+            "certificate_hash": "4d2aa0a12897368bb5e2c330c4816d7cd5d2f431"
+          }
+        },
+        {
+          "client_id": "143653158800-ed97u1lc4oshmujfo7v14secs4jtj7cf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCKtgVNqGluwY4oQNvpYQnbXNBZMMqaANU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "143653158800-ed97u1lc4oshmujfo7v14secs4jtj7cf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
