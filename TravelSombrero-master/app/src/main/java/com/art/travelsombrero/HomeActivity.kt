@@ -11,9 +11,9 @@ class HomeActivity : AppCompatActivity(){
     private lateinit var mAuth: FirebaseAuth
     private lateinit var binding: ActivityHomeBinding
 
-    private val nuovoFragment = NewTrip()
-    private val impostazioniFragment = settings()
-    private val viaggiFragment = trip()
+    private val nuovoFragment = NewTripFragment()
+    private val impostazioniFragment = SettingsFragment()
+    private val viaggiFragment = TripFragment()
 
 
     override fun onCreate(savedInstanceState:Bundle?){

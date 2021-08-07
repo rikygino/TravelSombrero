@@ -31,7 +31,7 @@ class DetailFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_detail, container, false)
+        val view = inflater.inflate(R.layout.fragment_detail_trip, container, false)
 
         var title = view.findViewById<TextView>(R.id.titleTV)
         title.text = param1
