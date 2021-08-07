@@ -14,5 +14,7 @@ class DetailsOfTripActivity : AppCompatActivity() {
         binding = ActivityDetailsOfTripBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // TODO: add info covid, weather etc
+
     }
 }

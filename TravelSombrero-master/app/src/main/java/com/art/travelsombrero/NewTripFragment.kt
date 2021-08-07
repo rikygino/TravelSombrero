@@ -9,7 +9,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 
 
 class NewTripFragment : Fragment(), RecyclerViewAdapter.ClickListener {
@@ -32,7 +35,7 @@ class NewTripFragment : Fragment(), RecyclerViewAdapter.ClickListener {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_new_trip, container, false)
-        buildDisplayData()
+        fetchDataFirebase()
         initRecyclerView(view)
         return view
     }
@@ -44,14 +47,28 @@ class NewTripFragment : Fragment(), RecyclerViewAdapter.ClickListener {
         recyclerView.adapter = adapter
     }
 
-    private fun buildDisplayData(){
-        listData.add(DataModel("BMW"))
-        listData.add(DataModel("Audi"))
-        listData.add(DataModel("Chevrolet"))
-        listData.add(DataModel("Ford"))
-        listData.add(DataModel("Honda"))
-        listData.add(DataModel("Ferrari"))
+
+    private fun fetchDataFirebase(){
+        val ref = FirebaseDatabase.getInstance().getReference("/destinations")
+        ref.addListenerForSingleValueEvent(object : ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                snapshot.children.forEach{
+
+                    val destination = it.getValue(DataModel::class.java)
+                    if (destination != null) {
+                        listData.add(destination)
+                    }
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+        })
+
     }
+
     companion object {
         /**
          * Use this factory method to create a new instance of
@@ -70,4 +87,5 @@ class NewTripFragment : Fragment(), RecyclerViewAdapter.ClickListener {
         var intent = Intent(context, DetailsOfTripActivity::class.java)
         startActivity(intent)
     }
+
 }

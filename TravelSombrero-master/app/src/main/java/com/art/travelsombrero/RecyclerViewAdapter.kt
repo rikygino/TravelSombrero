@@ -3,6 +3,7 @@ package com.art.travelsombrero
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
@@ -21,15 +22,28 @@ class RecyclerViewAdapter(val listData: List<DataModel>, val clickListener: Clic
     }
 
     class MyViewHolder(view: View): RecyclerView.ViewHolder(view) {
-        var titleTextView: TextView
-
+        var city: TextView
+//        var imageUrl: ImageView
+        var state: TextView
         init{
-            titleTextView = view.findViewById(R.id.titleTextview)
+            city = view.findViewById(R.id.city_name)
+//            imageUrl = view.findViewById(R.id.city_image)
+            state = view.findViewById(R.id.state_name)
         }
     }
 
-    override fun onBindViewHolder(holder: MyViewHolder, position: Int,) {
-        holder.titleTextView.text = listData.get(position).title
+    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+        holder.city.text = listData.get(position).city
+        holder.itemView.setOnClickListener(){
+            clickListener.onItemClick(listData.get(position))
+
+        }
+//        holder.imageUrl.text = listData.get(position).city
+//        holder.itemView.setOnClickListener(){
+//            clickListener.onItemClick(listData.get(position))
+//
+//        }
+        holder.state.text = listData.get(position).state
         holder.itemView.setOnClickListener(){
             clickListener.onItemClick(listData.get(position))
 
