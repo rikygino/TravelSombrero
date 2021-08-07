@@ -1,4 +1,4 @@
-package com.art.travelsombrero.fragments
+package com.art.travelsombrero
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
