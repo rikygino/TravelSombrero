@@ -3,7 +3,6 @@ package com.art.travelsombrero
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
@@ -12,7 +11,7 @@ class RecyclerViewAdapter(val listData: List<DataModel>, val clickListener: Clic
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.recycler_row,parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.destination_recycler_row,parent, false)
 
         return MyViewHolder(view)
     }

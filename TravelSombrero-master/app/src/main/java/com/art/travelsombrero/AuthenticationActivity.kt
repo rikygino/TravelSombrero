@@ -47,7 +47,7 @@ class AuthenticationActivity : AppCompatActivity(){
                 startActivity(homeIntent)
                 finish()
             }
-        }, 100)
+        }, 0)
 
 
         binding.google.setOnClickListener{

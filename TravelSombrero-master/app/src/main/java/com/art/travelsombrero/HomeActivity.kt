@@ -24,7 +24,6 @@ class HomeActivity : AppCompatActivity(){
 
         replaceFragment(nuovoFragment,"new_trip_fragment")
 
-
         binding.bottomNavigation.setOnNavigationItemSelectedListener {
             when(it.itemId){
                 R.id.ic_nuovo -> replaceFragment(nuovoFragment, "new_trip_fragment")

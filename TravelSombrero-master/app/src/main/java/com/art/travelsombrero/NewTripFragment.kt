@@ -1,6 +1,5 @@
 package com.art.travelsombrero
 
-
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -19,7 +18,7 @@ class NewTripFragment : Fragment(), RecyclerViewAdapter.ClickListener {
 
     private lateinit var adapter: RecyclerViewAdapter
     val listData: ArrayList<DataModel> = ArrayList()
-    private var bool = false
+    private var bool = true
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,7 +34,6 @@ class NewTripFragment : Fragment(), RecyclerViewAdapter.ClickListener {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_new_trip, container, false)
-        fetchDataFirebase()
         initRecyclerView(view)
         return view
     }
@@ -43,22 +41,26 @@ class NewTripFragment : Fragment(), RecyclerViewAdapter.ClickListener {
     private fun initRecyclerView(view: View) {
         val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(activity)
-        adapter = RecyclerViewAdapter(listData, this)
-        recyclerView.adapter = adapter
+        fetchDataFirebase(recyclerView, this)
     }
 
 
-    private fun fetchDataFirebase(){
+    private fun fetchDataFirebase(recyclerView: RecyclerView, context: NewTripFragment){
         val ref = FirebaseDatabase.getInstance().getReference("/destinations")
         ref.addListenerForSingleValueEvent(object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
-                snapshot.children.forEach{
+                if(bool){
+                    snapshot.children.forEach{
 
-                    val destination = it.getValue(DataModel::class.java)
-                    if (destination != null) {
-                        listData.add(destination)
+                        val destination = it.getValue(DataModel::class.java)
+                        if (destination != null) {
+                            listData.add(destination)
+                        }
                     }
                 }
+                adapter = RecyclerViewAdapter(listData, context)
+                recyclerView.adapter = adapter
+                bool = false
             }
 
             override fun onCancelled(error: DatabaseError) {
