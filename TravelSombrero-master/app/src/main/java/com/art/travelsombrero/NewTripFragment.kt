@@ -39,7 +39,7 @@ class NewTripFragment : Fragment(), RecyclerViewAdapter.ClickListener {
     }
 
     private fun initRecyclerView(view: View) {
-        val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView)
+        val recyclerView = view.findViewById<RecyclerView>(R.id.recycler_view)
         recyclerView.layoutManager = LinearLayoutManager(activity)
         fetchDataFirebase(recyclerView, this)
     }
