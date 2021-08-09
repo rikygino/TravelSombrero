@@ -2,7 +2,6 @@
 
 
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="150dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -18,7 +17,9 @@
     <ImageView
         android:id="@+id/city_image"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:adjustViewBounds="true"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -31,7 +32,7 @@
             android:layout_marginBottom="7dp"
             android:layout_marginLeft="7dp"
             android:text="United Kingdomn"
-            android:textColor="#4E4E4E"
+            android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -45,7 +46,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             android:text="San Francoisco"
-            android:textColor="#000000"
+            android:textColor="@color/white"
             android:textSize="23dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
