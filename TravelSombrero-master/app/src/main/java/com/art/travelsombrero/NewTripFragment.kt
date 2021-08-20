@@ -52,7 +52,8 @@ class NewTripFragment : Fragment(), RecyclerViewAdapter.ClickListener {
                 searchedListData.clear()
                 while(listData.size != index){
 
-                    if(listData.get(index).city.length >= query.toString().length && listData.get(index).city.substring(0,query.toString().length).lowercase() == query.toString().lowercase() ){
+                    if(listData.get(index).city.length >= query.toString().length
+                        && listData.get(index).city.substring(0,query.toString().length).lowercase() == query.toString().lowercase() ){
                         searchedListData.add(listData[index])
                     }
                     index++
@@ -66,7 +67,8 @@ class NewTripFragment : Fragment(), RecyclerViewAdapter.ClickListener {
                 searchedListData.clear()
                 while(listData.size != index){
 
-                    if(listData.get(index).city.length >= newText.toString().length && listData.get(index).city.substring(0,newText.toString().length).lowercase() == newText.toString().lowercase() ){
+                    if(listData.get(index).city.length >= newText.toString().length
+                        && listData.get(index).city.substring(0,newText.toString().length).lowercase() == newText.toString().lowercase() ){
                         searchedListData.add(listData[index])
                     }
                     index++
@@ -120,6 +122,16 @@ class NewTripFragment : Fragment(), RecyclerViewAdapter.ClickListener {
 
     override fun onItemClick(destinationDataModel: DestinationDataModel) {
         var intent = Intent(context, DetailsOfTripActivity::class.java)
+        val alpha_3 = destinationDataModel.alpha_3
+        val city = destinationDataModel.city
+        val imageUrl = destinationDataModel.imageUrl
+        val locCode = destinationDataModel.locCode
+        val state = destinationDataModel.state
+        intent.putExtra("alpha_3", alpha_3)
+        intent.putExtra("city", city)
+        intent.putExtra("imageUrl", imageUrl)
+        intent.putExtra("locCode", locCode)
+        intent.putExtra("state", state)
         startActivity(intent)
     }
 
