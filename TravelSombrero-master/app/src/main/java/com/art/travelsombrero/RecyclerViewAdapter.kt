@@ -5,11 +5,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.appcompat.view.menu.MenuView
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 
-class RecyclerViewAdapter(val listData: List<DataModel>, val clickListener: ClickListener): RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder>() {
+class RecyclerViewAdapter(val listData: List<DestinationDataModel>, val clickListener: ClickListener): RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder>() {
 
 
 
@@ -52,6 +51,6 @@ class RecyclerViewAdapter(val listData: List<DataModel>, val clickListener: Clic
     }
 
     interface ClickListener {
-        fun onItemClick(dataModel: DataModel)
+        fun onItemClick(destinationDataModel: DestinationDataModel)
     }
 }

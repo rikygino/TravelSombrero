@@ -2,10 +2,9 @@ package com.art.travelsombrero
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.*
+import android.widget.SearchView
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.DataSnapshot
@@ -17,13 +16,16 @@ import com.google.firebase.database.ValueEventListener
 class NewTripFragment : Fragment(), RecyclerViewAdapter.ClickListener {
 
     private lateinit var adapter: RecyclerViewAdapter
-    val listData: ArrayList<DataModel> = ArrayList()
+    val listData: ArrayList<DestinationDataModel> = ArrayList()
+    val searchedListData: ArrayList<DestinationDataModel> = ArrayList()
     private var bool = true
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
+
+
 
         }
     }
@@ -42,6 +44,37 @@ class NewTripFragment : Fragment(), RecyclerViewAdapter.ClickListener {
         val recyclerView = view.findViewById<RecyclerView>(R.id.recycler_view)
         recyclerView.layoutManager = LinearLayoutManager(activity)
         fetchDataFirebase(recyclerView, this)
+        val searchRecyclerView = view.findViewById<SearchView>(R.id.searchView)
+        searchRecyclerView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                searchRecyclerView.clearFocus()
+                var index=0
+                searchedListData.clear()
+                while(listData.size != index){
+
+                    if(listData.get(index).city.length >= query.toString().length && listData.get(index).city.substring(0,query.toString().length).lowercase() == query.toString().lowercase() ){
+                        searchedListData.add(listData[index])
+                    }
+                    index++
+                }
+                recyclerView.adapter = RecyclerViewAdapter(searchedListData, this@NewTripFragment)
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                var index=0
+                searchedListData.clear()
+                while(listData.size != index){
+
+                    if(listData.get(index).city.length >= newText.toString().length && listData.get(index).city.substring(0,newText.toString().length).lowercase() == newText.toString().lowercase() ){
+                        searchedListData.add(listData[index])
+                    }
+                    index++
+                }
+                recyclerView.adapter = RecyclerViewAdapter(searchedListData, this@NewTripFragment)
+                return false
+            }
+        })
     }
 
 
@@ -52,7 +85,7 @@ class NewTripFragment : Fragment(), RecyclerViewAdapter.ClickListener {
                 if(bool){
                     snapshot.children.forEach{
 
-                        val destination = it.getValue(DataModel::class.java)
+                        val destination = it.getValue(DestinationDataModel::class.java)
                         if (destination != null) {
                             listData.add(destination)
                         }
@@ -85,9 +118,10 @@ class NewTripFragment : Fragment(), RecyclerViewAdapter.ClickListener {
             }
     }
 
-    override fun onItemClick(dataModel: DataModel) {
+    override fun onItemClick(destinationDataModel: DestinationDataModel) {
         var intent = Intent(context, DetailsOfTripActivity::class.java)
         startActivity(intent)
     }
 
 }
+

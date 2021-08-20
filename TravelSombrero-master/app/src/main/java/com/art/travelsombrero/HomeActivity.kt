@@ -8,7 +8,6 @@ import com.google.firebase.auth.FirebaseAuth
 
 class HomeActivity : AppCompatActivity(){
 
-    private lateinit var mAuth: FirebaseAuth
     private lateinit var binding: ActivityHomeBinding
 
     private val nuovoFragment = NewTripFragment()
