@@ -10,9 +10,9 @@ class HomeActivity : AppCompatActivity(){
 
     private lateinit var binding: ActivityHomeBinding
 
-    private val nuovoFragment = NewTripFragment()
-    private val impostazioniFragment = SettingsFragment()
-    private val viaggiFragment = TripFragment()
+    private val newTripFragment = NewTripFragment()
+    private val settingsFragment = SettingsFragment()
+    private val tripsFragment = TripFragment()
 
 
     override fun onCreate(savedInstanceState:Bundle?){
@@ -21,13 +21,13 @@ class HomeActivity : AppCompatActivity(){
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        replaceFragment(nuovoFragment,"new_trip_fragment")
+        replaceFragment(newTripFragment,"new_trip_fragment")
 
         binding.bottomNavigation.setOnNavigationItemSelectedListener {
             when(it.itemId){
-                R.id.ic_nuovo -> replaceFragment(nuovoFragment, "new_trip_fragment")
-                R.id.ic_impostazioni -> replaceFragment(impostazioniFragment, "settings_fragment")
-                R.id.ic_viaggi -> replaceFragment(viaggiFragment, "trip_fragment")
+                R.id.ic_nuovo -> replaceFragment(newTripFragment, "new_trip_fragment")
+                R.id.ic_impostazioni -> replaceFragment(settingsFragment, "settings_fragment")
+                R.id.ic_viaggi -> replaceFragment(tripsFragment, "trip_fragment")
             }
             true
         }

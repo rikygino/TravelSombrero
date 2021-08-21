@@ -25,8 +25,6 @@ class NewTripFragment : Fragment(), RecyclerViewAdapter.ClickListener {
         super.onCreate(savedInstanceState)
         arguments?.let {
 
-
-
         }
     }
 

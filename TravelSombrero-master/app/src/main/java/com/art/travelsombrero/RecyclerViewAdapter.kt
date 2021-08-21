@@ -8,32 +8,27 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 
-class RecyclerViewAdapter(val listData: List<DestinationDataModel>, val clickListener: ClickListener): RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder>() {
+class RecyclerViewAdapter(val listData: List<DestinationDataModel>, val clickListener: ClickListener): RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>() {
 
 
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.destination_recycler_row,parent, false)
 
-        return MyViewHolder(view)
+        return ViewHolder(view)
     }
 
     override fun getItemCount(): Int {
         return listData.size
     }
 
-    class MyViewHolder(view: View): RecyclerView.ViewHolder(view) {
-        var city: TextView
-        var imageUrl: ImageView
-        var state: TextView
-        init{
-            city = view.findViewById(R.id.city_name)
-           imageUrl = view.findViewById(R.id.city_image)
-            state = view.findViewById(R.id.state_name)
-        }
+    class ViewHolder(view: View): RecyclerView.ViewHolder(view) {
+        var city: TextView = view.findViewById(R.id.city_name)
+        var imageUrl: ImageView = view.findViewById(R.id.city_image)
+        var state: TextView = view.findViewById(R.id.state_name)
     }
 
-    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.city.text = listData.get(position).city
         holder.itemView.setOnClickListener(){
             clickListener.onItemClick(listData.get(position))

@@ -6,7 +6,6 @@ import com.art.travelsombrero.databinding.ActivityDetailsOfTripBinding
 
 class DetailsOfTripActivity() : AppCompatActivity() {
     private lateinit var binding: ActivityDetailsOfTripBinding
-    private lateinit var bund : Bundle
     private lateinit var dest : DestinationDataModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -15,9 +14,14 @@ class DetailsOfTripActivity() : AppCompatActivity() {
         binding = ActivityDetailsOfTripBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        var bund = intent.extras
-        if (bund != null) {
-            dest = DestinationDataModel(bund.getSerializable("alpha_3").toString(),bund.getSerializable("city").toString(),bund.getSerializable("imageUrl").toString(), bund.getSerializable("locCode").toString(), bund.getSerializable("state").toString(), )
+        var extras = intent.extras
+        if (extras != null) {
+            dest = DestinationDataModel(
+                extras.getSerializable("alpha_3").toString(),
+                extras.getSerializable("city").toString(),
+                extras.getSerializable("imageUrl").toString(),
+                extras.getSerializable("locCode").toString(),
+                extras.getSerializable("state").toString())
         }
 
         binding.cityName.text = dest.city

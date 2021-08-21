@@ -9,7 +9,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="colore_sfondo">#293133</color>
     <color name="giallo">#F8DB3B</color>
-    <color name="grey">#878787</color>
-    <color name="light_blue">#14A3B5</color>
+    <color name="white_blue">#6AECFBFF</color>
+    <color name="light_blue">#D814A8B5</color>
 
 </resources>
