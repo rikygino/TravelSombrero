@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".InsertDataTripActivity">
+
+    <TextView
+        android:id="@+id/TripNameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:text="Insert your trip name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.131"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/TripNameEditText"
+        android:layout_width="200dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/rounded_edittext_login"
+        android:ems="10"
+        android:hint="Trip name"
+        app:layout_constraintEnd_toEndOf="@+id/TripNameTextView"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/TripNameTextView"
+        app:layout_constraintTop_toBottomOf="@+id/TripNameTextView" />
+
+    <TextView
+        android:id="@+id/DepartureDateTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="Choose a departure date"
+        app:layout_constraintEnd_toEndOf="@+id/TripNameEditText"
+        app:layout_constraintHorizontal_bias="0.039"
+        app:layout_constraintStart_toStartOf="@+id/TripNameEditText"
+        app:layout_constraintTop_toBottomOf="@+id/TripNameEditText" />
+
+    <DatePicker
+        android:id="@+id/DepartureDateDatePicker"
+        android:layout_width="271dp"
+        android:layout_height="154dp"
+        android:layout_marginTop="20dp"
+        android:calendarViewShown="false"
+        android:datePickerMode="spinner"
+        android:ems="10"
+        app:layout_constraintEnd_toEndOf="@+id/DepartureDateTextView"
+        app:layout_constraintHorizontal_bias="0.028"
+        app:layout_constraintStart_toStartOf="@+id/DepartureDateTextView"
+        app:layout_constraintTop_toBottomOf="@+id/DepartureDateTextView" />
+
+    <TextView
+        android:id="@+id/ReturnDateTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="Choose a return date"
+        app:layout_constraintEnd_toEndOf="@+id/DepartureDateDatePicker"
+        app:layout_constraintHorizontal_bias="0.028"
+        app:layout_constraintStart_toStartOf="@+id/DepartureDateDatePicker"
+        app:layout_constraintTop_toBottomOf="@+id/DepartureDateDatePicker" />
+
+    <DatePicker
+        android:id="@+id/ReturnDateDatePicker"
+        android:layout_width="271dp"
+        android:layout_height="154dp"
+        android:layout_marginTop="20dp"
+        android:calendarViewShown="false"
+        android:datePickerMode="spinner"
+        android:ems="10"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/ReturnDateTextView"
+        app:layout_constraintHorizontal_bias="0.037"
+        app:layout_constraintStart_toStartOf="@+id/ReturnDateTextView"
+        app:layout_constraintTop_toBottomOf="@+id/ReturnDateTextView"
+        app:layout_constraintVertical_bias="0.008" />
+
+    <android.widget.Button
+        android:id="@+id/buttonCreateLuggage"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_button"
+        android:text="Create your luggage"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.963" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

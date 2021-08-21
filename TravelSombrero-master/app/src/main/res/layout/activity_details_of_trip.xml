@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/NextButton"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".DetailsOfTripActivity">
@@ -31,47 +32,43 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.862" />
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="16dp"
-        android:text="<"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.044"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/city_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="28dp"
-        android:fontFamily="sans-serif"
-        android:text="tricche"
-        android:textColor="@color/black"
-        android:textFontWeight="900"
-        android:textSize="25sp"
+        android:layout_marginStart="32dp"
+        android:text="New York"
+        android:textSize="23dp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/textView3"
-        app:layout_constraintHorizontal_bias="0.444"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/city_image" />
+        app:layout_constraintTop_toBottomOf="@+id/city_image"
+        app:layout_constraintVertical_bias="0.035" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/state_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="280dp"
-        android:fontFamily="sans-serif"
+        android:layout_marginLeft="7dp"
+        android:layout_marginBottom="60dp"
         android:text="USA"
-        android:textColor="@color/black"
-        android:textFontWeight="900"
-        android:textSize="16sp"
-        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/city_image" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/city_name"
+        app:layout_constraintTop_toBottomOf="@+id/city_image"
+        app:layout_constraintVertical_bias="0.057" />
+
+    <android.widget.Button
+        android:id="@+id/next_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:text="Button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
