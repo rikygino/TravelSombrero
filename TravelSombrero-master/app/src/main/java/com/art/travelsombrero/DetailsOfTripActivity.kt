@@ -24,8 +24,6 @@ class DetailsOfTripActivity() : AppCompatActivity() {
                 extras.getSerializable("state").toString())
         }
 
-        binding.cityName.text = dest.city
-        binding.stateName.text = dest.state
 
         // TODO: add info covid, weather etc
 
