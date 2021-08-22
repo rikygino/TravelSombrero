@@ -8,12 +8,10 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 
-class RecyclerViewAdapter(val listData: List<DestinationDataModel>, val clickListener: ClickListener): RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>() {
-
-
+class TripRecyclerViewAdapter(val listData: List<DestinationDataModel>, val clickListener: ClickListener): RecyclerView.Adapter<TripRecyclerViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.destination_recycler_row,parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.trip_recycler_row,parent, false)
 
         return ViewHolder(view)
     }
@@ -24,8 +22,8 @@ class RecyclerViewAdapter(val listData: List<DestinationDataModel>, val clickLis
 
     class ViewHolder(view: View): RecyclerView.ViewHolder(view) {
         var city: TextView = view.findViewById(R.id.city_name)
-        var imageUrl: ImageView = view.findViewById(R.id.city_image)
-        var state: TextView = view.findViewById(R.id.state_name)
+        var depDate: TextView = view.findViewById(R.id.)
+        var retDate: TextView = view.findViewById(R.id.)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -34,12 +32,12 @@ class RecyclerViewAdapter(val listData: List<DestinationDataModel>, val clickLis
             clickListener.onItemClick(listData.get(position))
         }
 
-        Picasso.get().load(listData.get(position).imageUrl).into(holder.imageUrl)
+        holder.depDate.text = listData.get(position).
         holder.itemView.setOnClickListener(){
             clickListener.onItemClick(listData.get(position))
         }
 
-        holder.state.text = listData.get(position).state
+        holder.depDate.text = listData.get(position).
         holder.itemView.setOnClickListener(){
             clickListener.onItemClick(listData.get(position))
         }

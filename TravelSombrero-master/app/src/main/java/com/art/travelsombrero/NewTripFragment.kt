@@ -13,9 +13,9 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
 
-class NewTripFragment : Fragment(), RecyclerViewAdapter.ClickListener {
+class NewTripFragment : Fragment(), DestinationRecyclerViewAdapter.ClickListener {
 
-    private lateinit var adapter: RecyclerViewAdapter
+    private lateinit var adapter: DestinationRecyclerViewAdapter
     val listData: ArrayList<DestinationDataModel> = ArrayList()
     val searchedListData: ArrayList<DestinationDataModel> = ArrayList()
     private var bool = true
@@ -56,7 +56,7 @@ class NewTripFragment : Fragment(), RecyclerViewAdapter.ClickListener {
                     }
                     index++
                 }
-                recyclerView.adapter = RecyclerViewAdapter(searchedListData, this@NewTripFragment)
+                recyclerView.adapter = DestinationRecyclerViewAdapter(searchedListData, this@NewTripFragment)
                 return false
             }
 
@@ -71,7 +71,7 @@ class NewTripFragment : Fragment(), RecyclerViewAdapter.ClickListener {
                     }
                     index++
                 }
-                recyclerView.adapter = RecyclerViewAdapter(searchedListData, this@NewTripFragment)
+                recyclerView.adapter = DestinationRecyclerViewAdapter(searchedListData, this@NewTripFragment)
                 return false
             }
         })
@@ -91,7 +91,7 @@ class NewTripFragment : Fragment(), RecyclerViewAdapter.ClickListener {
                         }
                     }
                 }
-                adapter = RecyclerViewAdapter(listData, context)
+                adapter = DestinationRecyclerViewAdapter(listData, context)
                 recyclerView.adapter = adapter
                 bool = false
             }

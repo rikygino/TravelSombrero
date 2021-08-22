@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.art.travelsombrero.databinding.ActivityAuthenticationBinding
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -13,6 +14,8 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
+import com.google.firebase.database.FirebaseDatabase
+
 
 class AuthenticationActivity : AppCompatActivity(){
 
@@ -40,7 +43,6 @@ class AuthenticationActivity : AppCompatActivity(){
         //Firebase Auth instance
         mAuth = FirebaseAuth.getInstance()
         val user = mAuth.currentUser
-
         Handler(Looper.getMainLooper()).postDelayed({
             if(user != null){
                 val homeIntent = Intent(this, HomeActivity::class.java)
@@ -53,17 +55,14 @@ class AuthenticationActivity : AppCompatActivity(){
         binding.google.setOnClickListener{
             signIn()
         }
-
         binding.loginButton.setOnClickListener {
             var intent = Intent( this, LoginActivity::class.java)
             startActivity(intent)
         }
-
         binding.registrationButton.setOnClickListener {
             var intent = Intent( this, RegisterActivity::class.java)
             startActivity(intent)
         }
-
     }
 
     private fun signIn() {
@@ -96,18 +95,39 @@ class AuthenticationActivity : AppCompatActivity(){
 
     private fun firebaseAuthWithGoogle(idToken: String) {
         val credential = GoogleAuthProvider.getCredential(idToken, null)
-        mAuth.signInWithCredential(credential)
-            .addOnCompleteListener(this) { task ->
-                if (task.isSuccessful) {
-                    // Sign in success, update UI with the signed-in user's information
-                    Log.d("SignInActivity", "signInWithCredential:success")
-                    val intent = Intent(this, HomeActivity::class.java)
-                    startActivity(intent)
-                    finish()
-                } else {
-                    // If sign in fails, display a message to the user.
-                    Log.d("SignInActivity", "signInWithCredential:failure")
-                }
+
+
+        mAuth.signInWithCredential(credential).addOnCompleteListener(this) { task ->
+            if (task.isSuccessful) {
+                // Sign in success, update UI with the signed-in user's information
+                Log.d("SignInActivity", "signInWithCredential:success")
+                saveUserToFirebaseDatabase()
+                val intent = Intent(this, HomeActivity::class.java)
+                startActivity(intent)
+                finish()
+            } else {
+                // If sign in fails, display a message to the user.
+                Log.d("SignInActivity", "signInWithCredential:failure")
+            }
+        }
+    }
+
+    private fun saveUserToFirebaseDatabase(){
+        val uid = FirebaseAuth.getInstance().uid ?: ""
+        val ref = FirebaseDatabase.getInstance().getReference("/users/$uid")
+        val username = FirebaseAuth.getInstance().currentUser?.displayName
+        val user = username?.let { User(uid, it) }
+        ref.setValue(user)
+            .addOnSuccessListener {
+                Log.d("Register Activity", "Utente salvato anche nel DB")
+                var intent = Intent( this, HomeActivity::class.java)
+                startActivity(intent)
+            }
+            .addOnFailureListener {
+                Toast.makeText(this, "Impossibile salvare l'utente nel DB ${it.message}", Toast.LENGTH_LONG).show()
             }
     }
 }
+
+
+
