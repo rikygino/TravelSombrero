@@ -34,7 +34,6 @@ class DetailsOfTripActivity() : AppCompatActivity() {
         }
 
 
-        // TODO: add info covid, weather etc
 
     }
 

@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="150dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardElevation="50dp"
+    app:cardElevation="15dp"
     app:cardCornerRadius="24dp"
     app:cardBackgroundColor="#FFFFFF"
     android:layout_gravity="center"

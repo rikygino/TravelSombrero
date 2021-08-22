@@ -7,7 +7,10 @@ import android.util.Log
 import android.widget.Toast
 import com.art.travelsombrero.databinding.ActivityInsertDataTripBinding
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 
 class InsertDataTripActivity : AppCompatActivity() {
 
@@ -59,19 +62,39 @@ class InsertDataTripActivity : AppCompatActivity() {
         ref.setValue(td)
             .addOnSuccessListener {
                 Log.d("Register Activity", "Utente salvato anche nel DB")
-                var intent = Intent( this, AuthenticationActivity::class.java)
+                var intent = Intent( this, LuggageActivity::class.java)
+                intent.putExtra("tripname", tripname)
                 startActivity(intent)
             }
             .addOnFailureListener {
                 Toast.makeText(this, "Impossibile salvare l'utente nel DB ${it.message}", Toast.LENGTH_LONG).show()
             }
 
-        Log.d( "Register Activity",  "Username is $tripname")
-        Log.d( "Register Activity",  "Email is $depdate")
-        Log.d( "Register Activity",  "Password is $retdate")
+
+        val refread = FirebaseDatabase.getInstance().getReference("/default luggage")
+        refread.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                snapshot.children.forEach {
+                    val luggage = it.getValue(LuggageDataModel::class.java)
+                    if (luggage != null) {
+                        val refwrite = FirebaseDatabase.getInstance().getReference("/users/$uid/mytrips/$tripname/luggage/${luggage.object_name}")
+                        refwrite.setValue(luggage)
+                            .addOnSuccessListener {
+                            }
+                            .addOnFailureListener {
+                            }
+                    }
+                }
+            }
+            override fun onCancelled(error: DatabaseError) {
+            }
+        })
+
+
     }
 }
 
 class TripData(val tripname:String, val depdate: String, val retdate: String, val city: String){
     constructor() : this("","", "", "")
 }
+

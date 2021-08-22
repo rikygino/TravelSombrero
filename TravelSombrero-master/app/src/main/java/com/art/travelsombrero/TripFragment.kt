@@ -1,32 +1,29 @@
 package com.art.travelsombrero
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.art.travelsombrero.R
+import android.widget.TextView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+class TripFragment : Fragment(), TripRecyclerViewAdapter.ClickListener {
 
-/**
- * A simple [Fragment] subclass.
- * Use the [trip.newInstance] factory method to
- * create an instance of this fragment.
- */
-class TripFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    val listData: ArrayList<TripDataModel> = ArrayList()
+    private var bool = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+
         }
     }
 
@@ -35,26 +32,68 @@ class TripFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_trip, container, false)
+        val view = inflater.inflate(R.layout.fragment_trip, container, false)
+        initRecyclerView(view)
+        return view
+    }
+
+    private fun initRecyclerView(view: View) {
+        val recyclerView = view.findViewById<RecyclerView>(R.id.trips_recycler_view)
+        recyclerView.layoutManager = LinearLayoutManager(activity)
+        fetchDataFirebase(recyclerView, this,view)
+    }
+
+
+    private fun fetchDataFirebase(recyclerView: RecyclerView, context: TripFragment,view: View){
+        val uid = FirebaseAuth.getInstance().uid ?: ""
+        val ref = FirebaseDatabase.getInstance().getReference("/users/$uid/mytrips")
+        ref.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if(bool){
+                    snapshot.children.forEach{
+                        val trip = it.getValue(TripDataModel::class.java)
+                        if (trip != null) {
+                            listData.add(trip)
+                        }
+                    }
+                }
+                recyclerView.adapter = TripRecyclerViewAdapter(listData, context)
+                bool = false
+                if(listData.isEmpty()){
+                    val noTrips = view.findViewById<TextView>(R.id.no_trips)
+                    noTrips.text = "You don't have planned any trip yet..."
+                }
+            }
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+        })
+    }
+
+    override fun onResume() {
+
+        super.onResume()
     }
 
     companion object {
         /**
          * Use this factory method to create a new instance of
          * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment viaggi.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
-        fun newInstance(param1: String, param2: String) =
+        fun newInstance() =
             TripFragment().apply {
                 arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+
                 }
             }
     }
+
+    override fun onItemClick(tripDatamodel: TripDataModel) {
+        var intent = Intent(context, DetailsOfTripActivity::class.java)
+        startActivity(intent)
+    }
+
+
 }

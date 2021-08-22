@@ -3,20 +3,13 @@
     android:layout_width="match_parent"
     android:layout_height="50dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardElevation="50dp"
-    app:cardCornerRadius="24dp"
-    app:cardBackgroundColor="#1D03D9FF"
+    app:cardElevation="10dp"
+    app:cardCornerRadius="16dp"
+    app:cardBackgroundColor="@color/white"
     android:layout_gravity="center"
-    android:layout_marginVertical="16dp"
+    android:layout_marginTop="16dp"
     android:layout_marginLeft="25dp"
     android:layout_marginRight="25dp">
-
-    <ImageView
-        android:id="@+id/city_image"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="centerCrop"
-        android:adjustViewBounds="true"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -24,18 +17,21 @@
 
         <TextView
             android:id="@+id/trip_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:layout_marginBottom="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#2311D7E8"
             android:text="New York"
-            android:textColor="@color/black"
+            android:textColor="#37A8A8"
             android:textSize="16dp"
             android:textStyle="bold"
+            android:paddingTop="14dp"
+            android:paddingLeft="14dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.054"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.571" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

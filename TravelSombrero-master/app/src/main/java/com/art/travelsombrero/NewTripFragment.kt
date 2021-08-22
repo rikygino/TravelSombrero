@@ -15,7 +15,6 @@ import com.google.firebase.database.ValueEventListener
 
 class NewTripFragment : Fragment(), DestinationRecyclerViewAdapter.ClickListener {
 
-    private lateinit var adapter: DestinationRecyclerViewAdapter
     val listData: ArrayList<DestinationDataModel> = ArrayList()
     val searchedListData: ArrayList<DestinationDataModel> = ArrayList()
     private var bool = true
@@ -91,8 +90,7 @@ class NewTripFragment : Fragment(), DestinationRecyclerViewAdapter.ClickListener
                         }
                     }
                 }
-                adapter = DestinationRecyclerViewAdapter(listData, context)
-                recyclerView.adapter = adapter
+                recyclerView.adapter = DestinationRecyclerViewAdapter(listData, context)
                 bool = false
             }
 

@@ -2,9 +2,9 @@ package com.art.travelsombrero
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import com.art.travelsombrero.databinding.ActivityHomeBinding
-import com.google.firebase.auth.FirebaseAuth
 
 class HomeActivity : AppCompatActivity(){
 
@@ -31,7 +31,6 @@ class HomeActivity : AppCompatActivity(){
             }
             true
         }
-
     }
 
     private fun replaceFragment(fragment: Fragment, tag: String){
@@ -40,6 +39,5 @@ class HomeActivity : AppCompatActivity(){
             transaction.replace(R.id.frame_container, fragment, tag)
             transaction.commit()
         }
-
     }
 }

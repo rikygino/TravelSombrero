@@ -11,7 +11,7 @@
         android:layout_width="412dp"
         android:layout_height="182dp"
         android:layout_margin="0dp"
-        android:background="#A414A8B5"
+        android:background="@color/light_blue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -47,7 +47,7 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
-        android:layout_width="410dp"
+        android:layout_width="412dp"
         android:layout_height="514dp"
         android:background="#00FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
