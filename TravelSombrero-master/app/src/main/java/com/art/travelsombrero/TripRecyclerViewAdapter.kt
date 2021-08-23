@@ -1,6 +1,5 @@
 package com.art.travelsombrero
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,12 +20,13 @@ class TripRecyclerViewAdapter(val listData: List<TripDataModel>, val clickListen
 
     class ViewHolder(view: View): RecyclerView.ViewHolder(view) {
         var tripName: TextView = view.findViewById(R.id.trip_name)
+
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.tripName.text = listData[position].tripName
+        holder.tripName.text = listData.get(position).tripname
         holder.itemView.setOnClickListener(){
-            clickListener.onItemClick(listData[position])
+            clickListener.onItemClick(listData.get(position))
         }
     }
 

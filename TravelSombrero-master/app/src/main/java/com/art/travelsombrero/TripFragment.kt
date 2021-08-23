@@ -2,6 +2,7 @@ package com.art.travelsombrero
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -19,6 +20,7 @@ class TripFragment : Fragment(), TripRecyclerViewAdapter.ClickListener {
 
     val listData: ArrayList<TripDataModel> = ArrayList()
     private var bool = true
+    private lateinit var recyclerView: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,13 +34,13 @@ class TripFragment : Fragment(), TripRecyclerViewAdapter.ClickListener {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_trip, container, false)
+        var view = inflater.inflate(R.layout.fragment_trip, container, false)
         initRecyclerView(view)
         return view
     }
 
     private fun initRecyclerView(view: View) {
-        val recyclerView = view.findViewById<RecyclerView>(R.id.trips_recycler_view)
+        recyclerView = view.findViewById(R.id.trips_recycler_view)
         recyclerView.layoutManager = LinearLayoutManager(activity)
         fetchDataFirebase(recyclerView, this,view)
     }
@@ -51,28 +53,24 @@ class TripFragment : Fragment(), TripRecyclerViewAdapter.ClickListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(bool){
                     snapshot.children.forEach{
-                        val trip = it.getValue(TripDataModel::class.java)
+
+                        val trip= it.getValue(TripDataModel::class.java)
                         if (trip != null) {
                             listData.add(trip)
                         }
                     }
                 }
-                recyclerView.adapter = TripRecyclerViewAdapter(listData, context)
-                bool = false
                 if(listData.isEmpty()){
                     val noTrips = view.findViewById<TextView>(R.id.no_trips)
                     noTrips.text = "You don't have planned any trip yet..."
                 }
+                recyclerView.adapter = TripRecyclerViewAdapter(listData, context)
+                bool = false
             }
             override fun onCancelled(error: DatabaseError) {
 
             }
         })
-    }
-
-    override fun onResume() {
-
-        super.onResume()
     }
 
     companion object {
@@ -94,6 +92,5 @@ class TripFragment : Fragment(), TripRecyclerViewAdapter.ClickListener {
         var intent = Intent(context, DetailsOfTripActivity::class.java)
         startActivity(intent)
     }
-
 
 }

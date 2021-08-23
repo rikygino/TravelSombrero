@@ -11,7 +11,6 @@ class LuggageActivity : AppCompatActivity() {
 
     var tripname=""
 
-
     private lateinit var binding: ActivityLuggageBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {

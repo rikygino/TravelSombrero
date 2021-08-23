@@ -1,11 +1,12 @@
 package com.art.travelsombrero
-
 import android.app.AlertDialog
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -25,7 +26,6 @@ class LuggageFragment(var tripname: String) : Fragment(), LuggageRecyclerViewAda
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-
         }
     }
 
@@ -35,6 +35,12 @@ class LuggageFragment(var tripname: String) : Fragment(), LuggageRecyclerViewAda
     ): View? {
         val view = inflater.inflate(R.layout.fragment_luggage, container, false)
         initRecyclerView(view)
+        val viewbutton = view.findViewById<Button>(R.id.addButton)
+        viewbutton.setOnClickListener{
+            var intent = Intent(context, AddObjectActivity::class.java)
+            intent.putExtra("tripname", tripname)
+            startActivity(intent)
+        }
         return view
     }
 
@@ -107,5 +113,6 @@ class LuggageFragment(var tripname: String) : Fragment(), LuggageRecyclerViewAda
     }
 
     override fun onItemClick(luggageDataModel: LuggageDataModel) {
+
     }
 }
