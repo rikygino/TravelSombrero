@@ -41,6 +41,12 @@ class LuggageFragment(var tripname: String) : Fragment(), LuggageRecyclerViewAda
             intent.putExtra("tripname", tripname)
             startActivity(intent)
         }
+        val homebutton = view.findViewById<Button>(R.id.homeButton)
+        homebutton.setOnClickListener{
+            var intent = Intent(context, HomeActivity::class.java)
+            intent.putExtra("home", true)
+            startActivity(intent)
+        }
         return view
     }
 

@@ -21,7 +21,13 @@ class HomeActivity : AppCompatActivity(){
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        replaceFragment(newTripFragment,"new_trip_fragment")
+        val extras = intent.extras
+        if(extras == null){
+            replaceFragment(newTripFragment,"new_trip_fragment")
+        }else{
+            replaceFragment(tripsFragment,"trip_fragment")
+        }
+
 
         binding.bottomNavigation.setOnNavigationItemSelectedListener {
             when(it.itemId){

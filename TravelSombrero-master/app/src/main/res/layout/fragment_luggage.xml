@@ -11,25 +11,26 @@
         android:id="@+id/trip_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:fontFamily="sans-serif"
-        android:text="Your Luggage"
+        android:text="My Luggage"
         android:textColor="#A414A8B5"
         android:textFontWeight="900"
         android:textSize="40sp"
         android:textStyle="bold"
         android:translationZ="1dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.091"
+        app:layout_constraintHorizontal_bias="0.099"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/luggage_recycler_view"
-        android:layout_width="422dp"
-        android:layout_height="626dp"
+        android:layout_width="412dp"
+        android:layout_height="661dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/trip_title"
         app:layout_constraintVertical_bias="1.0" />
@@ -40,6 +41,7 @@
         android:layout_height="50dp"
         android:background="@drawable/rounded_button"
         android:text="+"
+        android:paddingBottom="3dp"
         android:textColor="@color/white"
         android:textSize="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -48,6 +50,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.976"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <android.widget.Button
+        android:id="@+id/homeButton"
+        android:layout_width="50dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="34dp"
+        android:background="@drawable/rounded_button"
+        android:text="Home"
+        android:textColor="@color/white"
+        android:textSize="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.867"
+        app:layout_constraintStart_toEndOf="@+id/trip_title"
+        app:layout_constraintTop_toTopOf="parent"
         tools:ignore="SpeakableTextPresentCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
