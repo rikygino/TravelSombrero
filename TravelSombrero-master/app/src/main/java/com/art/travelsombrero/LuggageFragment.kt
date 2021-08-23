@@ -89,6 +89,10 @@ class LuggageFragment(var tripname: String) : Fragment(), LuggageRecyclerViewAda
             val position = viewHolder.adapterPosition
             adapter.notifyItemChanged(position)
         }
+        builder.setOnCancelListener{
+            val position = viewHolder.adapterPosition
+            adapter.notifyItemChanged(position)
+        }
         builder.show()
     }
 

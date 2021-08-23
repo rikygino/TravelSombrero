@@ -2,11 +2,9 @@ package com.art.travelsombrero
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.KeyEvent
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.art.travelsombrero.databinding.ActivityHomeBinding
 import com.art.travelsombrero.databinding.ActivityLuggageBinding
 
 class LuggageActivity : AppCompatActivity() {
