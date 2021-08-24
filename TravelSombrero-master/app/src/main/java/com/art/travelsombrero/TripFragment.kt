@@ -56,7 +56,7 @@ class TripFragment : Fragment(), TripRecyclerViewAdapter.ClickListener {
             }
 
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                showDialog(viewHolder)
+                showDialog(viewHolder,view)
             }
         }
 
@@ -64,7 +64,7 @@ class TripFragment : Fragment(), TripRecyclerViewAdapter.ClickListener {
         swap.attachToRecyclerView(recyclerView)
     }
 
-    private fun showDialog(viewHolder: RecyclerView.ViewHolder){
+    private fun showDialog(viewHolder: RecyclerView.ViewHolder, view: View){
         val builder = AlertDialog.Builder(activity)
         builder.setTitle("Delete Item")
         builder.setMessage("Are you sure want to delete item?")
@@ -75,6 +75,10 @@ class TripFragment : Fragment(), TripRecyclerViewAdapter.ClickListener {
             val refremove = FirebaseDatabase.getInstance().getReference("/users/$uid/mytrips/$tripname")
             refremove.removeValue()
             listData.removeAt(position)
+            if(listData.isEmpty()){
+                val noTrips = view.findViewById<TextView>(R.id.no_trips)
+                noTrips.text = "You don't have planned any trip yet..."
+            }
             adapter.notifyItemRemoved(position)
         }
         builder.setNegativeButton("Cancel") {dialog, which->

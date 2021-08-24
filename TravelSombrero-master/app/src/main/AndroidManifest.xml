@@ -10,10 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TravelSombrero">
         <activity
-            android:name=".AddObjectActivity"
-            android:exported="true" >
-        </activity>
-        <activity
             android:name=".LuggageActivity"
             android:exported="true" >
         </activity>

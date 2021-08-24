@@ -71,7 +71,7 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <WebView
+    <TextView
         android:id="@+id/webview"
         android:layout_width="389dp"
         android:layout_height="384dp"
