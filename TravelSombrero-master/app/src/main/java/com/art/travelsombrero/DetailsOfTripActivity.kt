@@ -22,6 +22,20 @@ class DetailsOfTripActivity() : AppCompatActivity() {
             startActivity(intent)
         }
 
+        //Button per Abi
+//        binding.nextButton.setOnClickListener {
+//            var intent = Intent( this, InsertDataTripActivity::class.java)
+//            startActivity(intent)
+//        }
+//        binding.nextButton.setOnClickListener {
+//            var intent = Intent( this, InsertDataTripActivity::class.java)
+//            startActivity(intent)
+//        }
+//        binding.nextButton.setOnClickListener {
+//            var intent = Intent( this, InsertDataTripActivity::class.java)
+//            startActivity(intent)
+//        }
+
         var extras = intent.extras
         if (extras != null) {
             dest = DestinationDataModel(
