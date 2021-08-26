@@ -21,9 +21,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ItemActivity"
-            android:exported="true" />
-        <activity
             android:name=".TuristicActivity"
             android:exported="true" />
         <activity

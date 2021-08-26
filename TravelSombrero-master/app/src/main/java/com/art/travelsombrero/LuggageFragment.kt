@@ -163,7 +163,6 @@ class LuggageFragment(var tripname: String) : Fragment(), LuggageRecyclerViewAda
     }
 
     private fun saveObjectOnDB(tripname: String, mDialogView: View) {
-
         val objectname = mDialogView.findViewById<EditText>(R.id.ObjectNameEditText).text.toString()
         val am = mDialogView.findViewById<EditText>(R.id.AmountEditText).text.toString()
         bool=true
@@ -183,6 +182,6 @@ class LuggageFragment(var tripname: String) : Fragment(), LuggageRecyclerViewAda
                 .addOnFailureListener {
                 }
         }
-
     }
+
 }

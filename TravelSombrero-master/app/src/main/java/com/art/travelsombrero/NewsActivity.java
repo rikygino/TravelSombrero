@@ -19,6 +19,7 @@ import javax.xml.parsers.SAXParserFactory;
 import org.xml.sax.InputSource;
 import org.xml.sax.XMLReader;
 
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.content.Context;
@@ -34,7 +35,7 @@ import android.widget.AdapterView.OnItemClickListener;
 
 public class NewsActivity extends Activity implements OnItemClickListener {
 
-    private final String URL_STRING = "https://www.ny1.com/services/contentfeed.nyc%7Cmanhattan.hero.rss";
+    private final String URL_STRING = "https://abc7ny.com/feed/";
     private final String FILENAME = "news_feed.xml";
 
     private RSSFeed feed;
@@ -154,10 +155,13 @@ public class NewsActivity extends Activity implements OnItemClickListener {
         ArrayList<HashMap<String, String>> data = new ArrayList<HashMap<String, String>>();
         int i=0;
         for (RSSItem item : items) {
-            if (i<15 && item.getPubDate() !=null && item.getTitle() !=null) {
+            if (i<15 && (item.getPubDate() != null && item.getTitle() != null && item.getDescription() != null && item.getLink() != null)) {
                 HashMap<String, String> map = new HashMap<String, String>();
-                map.put("date", item.getPubDate());
+                String d = item.getPubDate().substring(0,22);
+                map.put("date", d);
                 map.put("title", item.getTitle());
+                map.put("description", item.getDescription());
+                map.put("link", item.getLink());
                 data.add(map);
                 i++;
             }
@@ -165,9 +169,8 @@ public class NewsActivity extends Activity implements OnItemClickListener {
 
         // create the resource, from, and to variables
         int resource = R.layout.listview_item;
-        String[] from = {"date", "title"};
-        int[] to = {R.id.pubDateTextView, R.id.titleTextView};
-
+        String[] from = {"date", "title", "description"};
+        int[] to = {R.id.pubDateTextView, R.id.titleTextView, R.id.descriptionTextView};
         // create and set the adapter
         SimpleAdapter adapter =
                 new SimpleAdapter(this, data, resource, from, to);
@@ -177,19 +180,18 @@ public class NewsActivity extends Activity implements OnItemClickListener {
     }
 
     @Override
-    public void onItemClick(AdapterView<?> parent, View v,
-                            int position, long id) {
+    public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
 
-        // get the item at the specified position
+        // get the intent
+        Intent intent = getIntent();
         RSSItem item = feed.getItem(position);
-
-        // create an intent
-        Intent intent = new Intent(this, ItemActivity.class);
-
-        intent.putExtra("pubdate", item.getPubDate());
-        intent.putExtra("title", item.getTitle());
-        intent.putExtra("description", item.getDescription());
         intent.putExtra("link", item.getLink());
-        this.startActivity(intent);
+
+        // get the Uri for the link
+        Uri viewUri = Uri.parse(item.getLink());
+
+        // create the intent and start it
+        Intent viewIntent = new Intent(Intent.ACTION_VIEW, viewUri);
+        startActivity(viewIntent);
     }
 }

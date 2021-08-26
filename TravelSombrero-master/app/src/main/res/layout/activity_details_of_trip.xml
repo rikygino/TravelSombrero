@@ -1,105 +1,131 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/NextButton"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DetailsOfTripActivity">
+    android:orientation="vertical">
 
-    <ImageView
-        android:id="@+id/city_image"
-        android:layout_width="413dp"
-        android:layout_height="172dp"
-        android:adjustViewBounds="true"
-        android:scaleType="centerCrop"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:background="@drawable/rounded_temp_trip"
-        android:padding="10dp"
-        android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="@+id/city_image"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.951"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.862" />
-
-
-    <TextView
-        android:id="@+id/city_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:text="New York"
-        android:textSize="23dp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/city_image"
-        app:layout_constraintVertical_bias="0.035" />
-
-    <TextView
-        android:id="@+id/state_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="7dp"
-        android:layout_marginBottom="60dp"
-        android:text="USA"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/city_name"
-        app:layout_constraintTop_toBottomOf="@+id/city_image"
-        app:layout_constraintVertical_bias="0.057" />
-
-    <android.widget.Button
-        android:id="@+id/next_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:text="Button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.95"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="427dp"
-        android:layout_marginTop="12dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/city_name"
-        app:layout_constraintVertical_bias="0.0"
-        tools:layout_editor_absoluteX="1dp">
-
-
-        <Button
-            android:id="@+id/NewsButton"
+        <ImageView
+            android:id="@+id/city_image"
             android:layout_width="match_parent"
-            android:layout_height="90dp"
-            android:text="News" />
+            android:layout_height="170dp"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            android:translationZ="-1dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:id="@+id/FoodButton"
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="90dp"
-            android:text="Food" />
+            android:layout_height="match_parent"
+            android:layout_marginTop="-20dp"
+            android:translationZ="1dp"
+            app:cardCornerRadius="20dp"
+            android:layout_marginBottom="-40dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0">
 
-        <Button
-            android:id="@+id/TuristicButton"
-            android:layout_width="match_parent"
-            android:layout_height="90dp"
-            android:text="Turistic" />
-    </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="518dp"
+                android:orientation="vertical">
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/city_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="16dp"
+                        android:layout_marginStart="16dp"
+                        android:text="New York"
+                        android:textSize="23dp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.235" />
+
+                    <TextView
+                        android:id="@+id/textView"
+                        android:layout_width="62dp"
+                        android:layout_height="36dp"
+                        android:background="@drawable/rounded_temp_trip"
+                        android:text="TEMPERATURA"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.865"
+                        app:layout_constraintStart_toEndOf="@+id/state_name"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.592" />
+
+                    <TextView
+                        android:id="@+id/state_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="17dp"
+                        android:text="USA"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/city_name"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.265" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="427dp"
+                    android:layout_marginTop="12dp"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/city_name"
+                    app:layout_constraintVertical_bias="0.0"
+                    tools:layout_editor_absoluteX="1dp">
+
+
+                    <Button
+                        android:id="@+id/FoodButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="90dp"
+                        android:text="Food" />
+
+                    <Button
+                        android:id="@+id/TuristicButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="90dp"
+                        android:text="Turistic" />
+
+                    <Button
+                        android:id="@+id/NewsButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="90dp"
+                        android:text="News" />
+                </LinearLayout>
+
+                <android.widget.Button
+                    android:id="@+id/next_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:text="Button"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.95"
+                    app:layout_constraintStart_toStartOf="parent" />
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+</LinearLayout>

@@ -1,7 +1,6 @@
 package com.art.travelsombrero;
 
 import android.app.Activity;
-
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -10,13 +9,11 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
-
 import org.xml.sax.InputSource;
 import org.xml.sax.XMLReader;
-
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
@@ -32,7 +29,7 @@ import android.widget.AdapterView.OnItemClickListener;
 
 
 public class TuristicActivity extends Activity implements OnItemClickListener {
-    private final String URL_STRING = "https://www.iloveny.com/blog/rss/";
+    private final String URL_STRING = "https://loving-newyork.com/feed/";
     private final String FILENAME = "news_feed.xml";
 
     private RSSFeed feed;
@@ -152,10 +149,15 @@ public class TuristicActivity extends Activity implements OnItemClickListener {
         ArrayList<HashMap<String, String>> data = new ArrayList<HashMap<String, String>>();
         int i=0;
         for (RSSItem item : items) {
-            if (i<15 && item.getPubDate() !=null && item.getTitle() !=null) {
+            if (i<15 && (item.getPubDate() != null && item.getTitle() != null && item.getDescription() != null && item.getLink() != null)) {
                 HashMap<String, String> map = new HashMap<String, String>();
-                map.put("date", item.getPubDate());
+                String[] e = item.getDescription().split("</p>");
+                String[] r = e[0].split("<p>");
+                String d = item.getPubDate().substring(0,22);
+                map.put("date", d);
                 map.put("title", item.getTitle());
+                map.put("description", r[1]);
+                map.put("link", item.getLink());
                 data.add(map);
                 i++;
             }
@@ -163,8 +165,8 @@ public class TuristicActivity extends Activity implements OnItemClickListener {
 
         // create the resource, from, and to variables
         int resource = R.layout.listview_item;
-        String[] from = {"date", "title"};
-        int[] to = {R.id.pubDateTextView, R.id.titleTextView};
+        String[] from = {"date", "title", "description"};
+        int[] to = {R.id.pubDateTextView, R.id.titleTextView, R.id.descriptionTextView};
 
         // create and set the adapter
         SimpleAdapter adapter =
@@ -177,18 +179,16 @@ public class TuristicActivity extends Activity implements OnItemClickListener {
     @Override
     public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
 
-        // get the item at the specified position
+        // get the intent
+        Intent intent = getIntent();
         RSSItem item = feed.getItem(position);
-
-        // create an intent
-        Intent intent = new Intent(this, ItemActivity.class);
-
-        intent.putExtra("pubdate", item.getPubDate());
-        intent.putExtra("title", item.getTitle());
-        intent.putExtra("description", item.getDescription());
         intent.putExtra("link", item.getLink());
 
-        this.startActivity(intent);
-    }
+        // get the Uri for the link
+        Uri viewUri = Uri.parse(item.getLink());
 
+        // create the intent and start it
+        Intent viewIntent = new Intent(Intent.ACTION_VIEW, viewUri);
+        startActivity(viewIntent);
+    }
 }
