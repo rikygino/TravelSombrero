@@ -7,7 +7,6 @@
     android:background="@color/light_blue"
     android:gravity="center"
     tools:context=".LoadingActivity">
-
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="150dp"
@@ -19,5 +18,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.499" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

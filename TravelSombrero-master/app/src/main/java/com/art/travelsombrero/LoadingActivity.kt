@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import com.art.travelsombrero.databinding.ActivityAuthenticationBinding
 import com.art.travelsombrero.databinding.ActivityLoadingBinding
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -52,3 +51,4 @@ class LoadingActivity : AppCompatActivity() {
 
     }
 }
+

@@ -40,6 +40,17 @@ class AuthenticationActivity : AppCompatActivity(){
             .build()
         googleSignInClient = GoogleSignIn.getClient(this, gso)
 
+        //Firebase Auth instance
+        mAuth = FirebaseAuth.getInstance()
+        val user = mAuth.currentUser
+        Handler(Looper.getMainLooper()).postDelayed({
+            if(user != null){
+                val homeIntent = Intent(this, HomeActivity::class.java)
+                startActivity(homeIntent)
+                finish()
+            }
+        }, 0)
+
 
         binding.google.setOnClickListener{
             signIn()

@@ -133,32 +133,32 @@ class LuggageFragment(var tripname: String) : Fragment(), LuggageRecyclerViewAda
             override fun onCancelled(error: DatabaseError) {
 
             }
-
         })
-
     }
 
     override fun onItemClick(luggageDataModel: LuggageDataModel) {
         val mDialogView = layoutInflater.inflate(R.layout.activity_modify_object, null)
-        val mBuilder = AlertDialog.Builder(context).setView(mDialogView).setTitle("Modify Object")
+        val mBuilder = AlertDialog.Builder(context).setView(mDialogView).setTitle("Modify Amount")
         val mAlertDialog = mBuilder.show()
         val modbtn = mDialogView.findViewById<Button>(R.id.ModifyButton)
         modbtn.setOnClickListener {
             val uid = FirebaseAuth.getInstance().uid ?: ""
             val ref = FirebaseDatabase.getInstance().getReference("/users/$uid/mytrips/$tripname/luggage/${luggageDataModel.object_name}")
             val modamEDtxt = mDialogView.findViewById<EditText>(R.id.ModifyAmountEditText).text.toString()
-            val am = Integer.parseInt(modamEDtxt)
-            val ob = LuggageDataModel(luggageDataModel.object_name, am)
-            bool=true
-            objectList.clear()
-            ref.setValue(ob)
-                .addOnSuccessListener {
-                }
-                .addOnFailureListener {
-                }
-            val view = layoutInflater.inflate(R.layout.fragment_luggage, null)
-            initRecyclerView(view)
-            mAlertDialog.dismiss()
+            if(modamEDtxt != ""){
+                bool=true
+                objectList.clear()
+                val am = Integer.parseInt(modamEDtxt)
+                val ob = LuggageDataModel(luggageDataModel.object_name, am)
+                mAlertDialog.dismiss()
+                ref.setValue(ob)
+                    .addOnSuccessListener {
+                    }
+                    .addOnFailureListener {
+                    }
+                val view = layoutInflater.inflate(R.layout.fragment_luggage, null)
+                initRecyclerView(view)
+            }
         }
     }
 
