@@ -82,8 +82,23 @@
         tools:layout_editor_absoluteX="1dp">
 
 
+        <Button
+            android:id="@+id/NewsButton"
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            android:text="News" />
 
+        <Button
+            android:id="@+id/FoodButton"
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            android:text="Food" />
 
+        <Button
+            android:id="@+id/TuristicButton"
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            android:text="Turistic" />
     </LinearLayout>
 
 

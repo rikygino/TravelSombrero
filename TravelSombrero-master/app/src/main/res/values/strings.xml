@@ -13,6 +13,14 @@
     <string name="search">Search</string>
     <string name="connection_error">Connection_error</string>
     <string name="xml_error">XML Error</string>
+    <string name="news_and_updates">News and Updates</string>
+    <string name="food_and_drink">Food and Drink</string>
+    <string name="turistic_spots">Turistic Spots</string>
+    <string name="item_pub_date">Item Pub Date</string>
+    <string name="item_title">Item Title</string>
+    <string name="item_link">Item Link</string>
+    <string name="item_description">Item Description</string>
+
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -33,4 +41,13 @@
     </string>
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
     <string name="legno">TODO</string>
+    <string name="title_activity_loading">LoadingActivity</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
 </resources>

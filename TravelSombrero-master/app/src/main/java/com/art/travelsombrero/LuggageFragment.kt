@@ -133,9 +133,7 @@ class LuggageFragment(var tripname: String) : Fragment(), LuggageRecyclerViewAda
             override fun onCancelled(error: DatabaseError) {
 
             }
-
         })
-
     }
 
     override fun onItemClick(luggageDataModel: LuggageDataModel) {
@@ -147,14 +145,20 @@ class LuggageFragment(var tripname: String) : Fragment(), LuggageRecyclerViewAda
             val uid = FirebaseAuth.getInstance().uid ?: ""
             val ref = FirebaseDatabase.getInstance().getReference("/users/$uid/mytrips/$tripname/luggage/${luggageDataModel.object_name}")
             val modamEDtxt = mDialogView.findViewById<EditText>(R.id.ModifyAmountEditText).text.toString()
-            val am = Integer.parseInt(modamEDtxt)
-            val ob = LuggageDataModel(luggageDataModel.object_name, am)
-            mAlertDialog.dismiss()
-            ref.setValue(ob)
-                .addOnSuccessListener {
-                }
-                .addOnFailureListener {
-                }
+            if(modamEDtxt != ""){
+                bool=true
+                objectList.clear()
+                val am = Integer.parseInt(modamEDtxt)
+                val ob = LuggageDataModel(luggageDataModel.object_name, am)
+                mAlertDialog.dismiss()
+                ref.setValue(ob)
+                    .addOnSuccessListener {
+                    }
+                    .addOnFailureListener {
+                    }
+                val view = layoutInflater.inflate(R.layout.fragment_luggage, null)
+                initRecyclerView(view)
+            }
         }
     }
 

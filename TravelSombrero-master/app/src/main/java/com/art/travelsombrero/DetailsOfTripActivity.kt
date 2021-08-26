@@ -22,19 +22,26 @@ class DetailsOfTripActivity() : AppCompatActivity() {
             startActivity(intent)
         }
 
-        //Button per Abi
-//        binding.nextButton.setOnClickListener {
-//            var intent = Intent( this, InsertDataTripActivity::class.java)
-//            startActivity(intent)
-//        }
-//        binding.nextButton.setOnClickListener {
-//            var intent = Intent( this, InsertDataTripActivity::class.java)
-//            startActivity(intent)
-//        }
-//        binding.nextButton.setOnClickListener {
-//            var intent = Intent( this, InsertDataTripActivity::class.java)
-//            startActivity(intent)
-//        }
+        binding.NewsButton.setOnClickListener {
+            var intent = Intent( this, NewsActivity::class.java)
+            val city = dest.city
+            intent.putExtra("city", city)
+            startActivity(intent)
+        }
+
+        binding.FoodButton.setOnClickListener {
+            var intent = Intent( this, FoodActivity::class.java)
+            val city = dest.city
+            intent.putExtra("city", city)
+            startActivity(intent)
+        }
+
+        binding.TuristicButton.setOnClickListener {
+            var intent = Intent( this, TuristicActivity::class.java)
+            val city = dest.city
+            intent.putExtra("city", city)
+            startActivity(intent)
+        }
 
         var extras = intent.extras
         if (extras != null) {
