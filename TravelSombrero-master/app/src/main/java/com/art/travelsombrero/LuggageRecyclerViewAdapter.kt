@@ -5,11 +5,14 @@ import android.view.ViewGroup
 import android.view.View
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.GridLayoutManager
+
+
+
 
 class LuggageRecyclerViewAdapter(val objectList: List<LuggageDataModel>, val clickListener: ClickListener): RecyclerView.Adapter<LuggageRecyclerViewAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.luggage_recycler_row,parent, false)
-
         return ViewHolder(view)
     }
 
@@ -28,8 +31,8 @@ class LuggageRecyclerViewAdapter(val objectList: List<LuggageDataModel>, val cli
             clickListener.onItemClick(objectList.get(position))
         }
 
-        holder.amount.text = objectList.get(position).amount.toString()
-        holder.itemView.setOnClickListener(){
+        holder.amount.text ="x"+objectList.get(position).amount.toString()
+        holder.itemView.setOnClickListener() {
             clickListener.onItemClick(objectList.get(position))
         }
     }

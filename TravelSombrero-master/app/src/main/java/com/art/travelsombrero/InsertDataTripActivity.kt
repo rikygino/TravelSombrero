@@ -71,7 +71,7 @@ class InsertDataTripActivity : AppCompatActivity() {
 
                 ref.setValue(td)
                     .addOnSuccessListener {
-                        var intent = Intent( this@InsertDataTripActivity, LuggageActivity::class.java)
+                        var intent = Intent( this@InsertDataTripActivity, DefaultLuggageActivity::class.java)
                         intent.putExtra("tripname", tripname)
                         startActivity(intent)
                     }
