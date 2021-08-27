@@ -158,9 +158,13 @@ public class NewsActivity extends Activity implements OnItemClickListener {
             if (i<15 && (item.getPubDate() != null && item.getTitle() != null && item.getDescription() != null && item.getLink() != null)) {
                 HashMap<String, String> map = new HashMap<String, String>();
                 String d = item.getPubDate().substring(0,22);
+                StringBuilder str = new StringBuilder();
+                str.append(item.getDescription().trim());
+                String punti = "..";
+                str.append(punti);
                 map.put("date", d);
                 map.put("title", item.getTitle());
-                map.put("description", item.getDescription());
+                map.put("description", str.toString());
                 map.put("link", item.getLink());
                 data.add(map);
                 i++;
@@ -169,8 +173,8 @@ public class NewsActivity extends Activity implements OnItemClickListener {
 
         // create the resource, from, and to variables
         int resource = R.layout.listview_item;
-        String[] from = {"date", "title", "description"};
-        int[] to = {R.id.pubDateTextView, R.id.titleTextView, R.id.descriptionTextView};
+        String[] from = {"date", "title", "description", "link"};
+        int[] to = {R.id.pubDateTextView, R.id.titleTextView, R.id.descriptionTextView, R.id.linkTextView};
         // create and set the adapter
         SimpleAdapter adapter =
                 new SimpleAdapter(this, data, resource, from, to);

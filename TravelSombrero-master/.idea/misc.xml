@@ -34,6 +34,7 @@
         <entry key="..\:/Users/Riky/Downloads/TravelSombrero/TravelSombrero-master/app/src/main/res/drawable/ic_impostazioni.xml" value="0.5708333333333333" />
         <entry key="..\:/Users/Riky/Downloads/TravelSombrero/TravelSombrero-master/app/src/main/res/drawable/ic_nuovo.xml" value="0.5708333333333333" />
         <entry key="..\:/Users/Riky/Downloads/TravelSombrero/TravelSombrero-master/app/src/main/res/drawable/ic_viaggi.xml" value="0.5708333333333333" />
+        <entry key="..\:/Users/Riky/Downloads/TravelSombrero/TravelSombrero-master/app/src/main/res/drawable/rounded_activities.xml" value="0.4265625" />
         <entry key="..\:/Users/Riky/Downloads/TravelSombrero/TravelSombrero-master/app/src/main/res/drawable/rounded_button.xml" value="0.5708333333333333" />
         <entry key="..\:/Users/Riky/Downloads/TravelSombrero/TravelSombrero-master/app/src/main/res/drawable/rounded_edittext_login.xml" value="0.5708333333333333" />
         <entry key="..\:/Users/Riky/Downloads/TravelSombrero/TravelSombrero-master/app/src/main/res/drawable/rounded_edittext_search.xml" value="0.5708333333333333" />
@@ -51,6 +52,7 @@
         <entry key="..\:/Users/Riky/Downloads/TravelSombrero/TravelSombrero-master/app/src/main/res/layout/activity_luggage.xml" value="0.3446557971014493" />
         <entry key="..\:/Users/Riky/Downloads/TravelSombrero/TravelSombrero-master/app/src/main/res/layout/activity_modify_object.xml" value="0.5546875" />
         <entry key="..\:/Users/Riky/Downloads/TravelSombrero/TravelSombrero-master/app/src/main/res/layout/activity_register.xml" value="0.5546875" />
+        <entry key="..\:/Users/Riky/Downloads/TravelSombrero/TravelSombrero-master/app/src/main/res/layout/default_luggage_recycler_row.xml" value="0.41041666666666665" />
         <entry key="..\:/Users/Riky/Downloads/TravelSombrero/TravelSombrero-master/app/src/main/res/layout/destination_recycler_row.xml" value="0.5019011406844106" />
         <entry key="..\:/Users/Riky/Downloads/TravelSombrero/TravelSombrero-master/app/src/main/res/layout/fragment_detail.xml" value="0.2692502532928065" />
         <entry key="..\:/Users/Riky/Downloads/TravelSombrero/TravelSombrero-master/app/src/main/res/layout/fragment_detail_trip.xml" value="0.5546875" />

@@ -1,5 +1,6 @@
 package com.art.travelsombrero
 
+import android.annotation.SuppressLint
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
@@ -28,6 +29,7 @@ class DefaultLuggageRecyclerViewAdapter(val activityList: List<DefaultLuggageDat
         var activityname: TextView = view.findViewById(R.id.activity_name)
     }
 
+    @SuppressLint("ResourceAsColor")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         var cardview = holder.itemView.findViewById<TextView>(R.id.activity_name)
         holder.activityname.text = activityList.get(position).activity

@@ -32,7 +32,7 @@ import android.widget.TextView;
 
 public class FoodActivity extends Activity implements AdapterView.OnItemClickListener {
 
-    private final String URL_STRING = "https://www.nytimes.com/svc/collections/v1/publish/https://www.nytimes.com/section/food/rss.xml";
+    private final String URL_STRING = "https://newyorkstreetfood.com/feed/";
     private final String FILENAME = "news_feed.xml";
 
     private RSSFeed feed;
@@ -155,9 +155,24 @@ public class FoodActivity extends Activity implements AdapterView.OnItemClickLis
             if (i<15 && (item.getPubDate() != null && item.getTitle() != null && item.getDescription() != null && item.getLink() != null)) {
                 HashMap <String,String> map = new HashMap<>();
                 String d = item.getPubDate().substring(0,22);
+                String[] e = item.getDescription().split("</p>");
+                String[] r = e[0].split("<p>");
+                String[] w = r[1].split("&#");
+                StringBuilder str = new StringBuilder();
+                String punti = "...";
+                String apo   = "'";
+                str.append(w[0]);
+                str.append(punti);
+                String str_parziale = str.toString();
+                String[] y = str_parziale.split("&#8217;");
+                StringBuilder builder = new StringBuilder();
+                for(String s : y) {
+                    builder.append(s);
+                    builder.append(apo);
+                }
                 map.put("date", d);
                 map.put("title", item.getTitle());
-                map.put("description", item.getDescription());
+                map.put("description", builder.toString().substring(0,builder.toString().length()-1));
                 map.put("link", item.getLink());
                 data.add(map);
                 i++;
@@ -166,8 +181,8 @@ public class FoodActivity extends Activity implements AdapterView.OnItemClickLis
 
         // create the resource, from, and to variables
         int resource = R.layout.listview_item;
-        String[] from = {"date", "title", "description"};
-        int[] to = {R.id.pubDateTextView, R.id.titleTextView, R.id.descriptionTextView};
+        String[] from = {"date", "title", "description", "link"};
+        int[] to = {R.id.pubDateTextView, R.id.titleTextView, R.id.descriptionTextView, R.id.linkTextView};
 
         // create and set the adapter
         SimpleAdapter adapter =
