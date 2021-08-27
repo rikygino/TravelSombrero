@@ -7,4 +7,5 @@
     <item name="editTextDateRitorno" type="id" />
     <item name="textTornare" type="id"/>
     <item name="buttonRicerca" type="id"/>
+    <item name="linkTextView" type="id"/>
 </resources>
