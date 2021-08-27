@@ -40,8 +40,8 @@ class LoginActivity : AppCompatActivity() {
             return
         }
 
-        Log.d( "Main Activity", "Email is $email")
-        Log.d( "Main Activity",  "Password is $password")
+        Log.d( "Login Activity", "Email is $email")
+        Log.d( "Login Activity",  "Password is $password")
 
         FirebaseAuth.getInstance().signInWithEmailAndPassword(email,password)
             .addOnCompleteListener {

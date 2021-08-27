@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.art.travelsombrero.databinding.ActivityDetailsOfTripBinding
+import com.squareup.picasso.Picasso
 
 class DetailsOfTripActivity() : AppCompatActivity() {
     private lateinit var binding: ActivityDetailsOfTripBinding
@@ -14,6 +15,20 @@ class DetailsOfTripActivity() : AppCompatActivity() {
 
         binding = ActivityDetailsOfTripBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        var extras = intent.extras
+        if (extras != null) {
+            dest = DestinationDataModel(
+                extras.getSerializable("alpha_3").toString(),
+                extras.getSerializable("city").toString(),
+                extras.getSerializable("imageUrl").toString(),
+                extras.getSerializable("locCode").toString(),
+                extras.getSerializable("state").toString())
+        }
+
+        binding.cityName.text = dest.city
+        binding.stateName.text = dest.state
+        Picasso.get().load(dest.imageUrl).into(binding.cityImage)
 
         binding.nextButton.setOnClickListener {
             var intent = Intent( this, InsertDataTripActivity::class.java)
@@ -41,16 +56,6 @@ class DetailsOfTripActivity() : AppCompatActivity() {
             val city = dest.city
             intent.putExtra("city", city)
             startActivity(intent)
-        }
-
-        var extras = intent.extras
-        if (extras != null) {
-            dest = DestinationDataModel(
-                extras.getSerializable("alpha_3").toString(),
-                extras.getSerializable("city").toString(),
-                extras.getSerializable("imageUrl").toString(),
-                extras.getSerializable("locCode").toString(),
-                extras.getSerializable("state").toString())
         }
     }
 
