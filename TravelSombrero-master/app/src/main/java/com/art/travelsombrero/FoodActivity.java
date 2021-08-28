@@ -46,7 +46,7 @@ public class FoodActivity extends Activity implements AdapterView.OnItemClickLis
         setContentView(R.layout.activity_food);
 
         titleTextView = (TextView) findViewById(R.id.titleTextView);
-        itemsListView = (ListView) findViewById(R.id.FoodListView);
+        itemsListView = (ListView) findViewById(R.id.foodListView);
 
         itemsListView.setOnItemClickListener(this);
 
@@ -143,7 +143,7 @@ public class FoodActivity extends Activity implements AdapterView.OnItemClickLis
         }
 
         // set the title for the feed
-        titleTextView.setText("Food and Drink");
+        //titleTextView.setText("Food and Drink");
 
         // get the items for the feed
         ArrayList<RSSItem> items = feed.getAllItems();

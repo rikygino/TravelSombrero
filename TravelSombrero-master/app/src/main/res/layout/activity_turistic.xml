@@ -23,8 +23,6 @@
         app:layout_constraintTop_toBottomOf="@+id/titleTextView"
         app:layout_constraintVertical_bias="0.0"
         tools:layout_editor_absoluteX="0dp">
-        android:layout_below="@+id/textList"
-
     </ListView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
