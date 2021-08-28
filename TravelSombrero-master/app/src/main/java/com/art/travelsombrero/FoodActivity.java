@@ -142,9 +142,6 @@ public class FoodActivity extends Activity implements AdapterView.OnItemClickLis
             return;
         }
 
-        // set the title for the feed
-        //titleTextView.setText("Food and Drink");
-
         // get the items for the feed
         ArrayList<RSSItem> items = feed.getAllItems();
 

@@ -145,9 +145,6 @@ public class NewsActivity extends Activity implements OnItemClickListener {
             return;
         }
 
-        // set the title for the feed
-        titleTextView.setText("News and Updates");
-
         // get the items for the feed
         ArrayList<RSSItem> items = feed.getAllItems();
 

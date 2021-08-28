@@ -29,6 +29,7 @@ import android.widget.AdapterView.OnItemClickListener;
 
 
 public class TuristicActivity extends Activity implements OnItemClickListener {
+
     private final String URL_STRING = "https://loving-newyork.com/feed/";
     private final String FILENAME = "news_feed.xml";
 
@@ -43,7 +44,7 @@ public class TuristicActivity extends Activity implements OnItemClickListener {
         setContentView(R.layout.activity_turistic);
 
         titleTextView = (TextView) findViewById(R.id.titleTextView);
-        itemsListView = (ListView) findViewById(R.id.TuristicListView);
+        itemsListView = (ListView) findViewById(R.id.turisticListView);
 
         itemsListView.setOnItemClickListener(this);
 
@@ -138,9 +139,6 @@ public class TuristicActivity extends Activity implements OnItemClickListener {
             titleTextView.setText("Unable to get RSS feed");
             return;
         }
-
-        // set the title for the feed
-        titleTextView.setText("Turistic Spots");
 
         // get the items for the feed
         ArrayList<RSSItem> items = feed.getAllItems();

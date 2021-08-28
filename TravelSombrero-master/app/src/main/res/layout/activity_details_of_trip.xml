@@ -37,7 +37,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:gravity="center_horizontal">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -50,16 +51,16 @@
                         android:layout_margin="16dp"
                         android:layout_marginStart="16dp"
                         android:text="New York"
+                        android:textColor="@color/black"
                         android:textSize="23dp"
                         android:textStyle="bold"
-                        android:textColor="@color/black"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintVertical_bias="0.235" />
 
                     <TextView
-                        android:id="@+id/textView"
+                        android:id="@+id/temperaturaTextView"
                         android:layout_width="62dp"
                         android:layout_height="36dp"
                         android:background="@drawable/rounded_temp_trip"
@@ -67,7 +68,21 @@
                         android:textColor="@color/black"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.865"
+                        app:layout_constraintHorizontal_bias="0.61"
+                        app:layout_constraintStart_toEndOf="@+id/state_name"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.592" />
+
+                    <TextView
+                        android:id="@+id/meteoTextView"
+                        android:layout_width="62dp"
+                        android:layout_height="36dp"
+                        android:background="@drawable/rounded_temp_trip"
+                        android:text="METEO"
+                        android:textColor="@color/black"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.92"
                         app:layout_constraintStart_toEndOf="@+id/state_name"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintVertical_bias="0.592" />
@@ -78,8 +93,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="18dp"
-                        android:textColor="@color/black"
                         android:text="USA"
+                        android:textColor="@color/black"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/city_name"
                         app:layout_constraintTop_toTopOf="parent"
@@ -87,61 +102,265 @@
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <LinearLayout
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:orientation="vertical"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/city_name"
-                    app:layout_constraintVertical_bias="0.0"
-                    tools:layout_editor_absoluteX="1dp">
+                    android:layout_height="wrap_content">
 
-                    <Button
-                        android:id="@+id/NewsButton"
+                    <GridLayout
                         android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:layout_marginHorizontal="30dp"
-                        android:layout_marginBottom="10dp"
-                        android:background="@drawable/rounded_activities"
-                        android:elevation="5dp"
-                        android:text="News and Updates"
-                        android:textStyle="italic" />
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginRight="30dp"
+                        android:columnCount="2"
+                        android:rowCount="2"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="MissingConstraints">
 
-                    <Button
-                        android:id="@+id/TuristicButton"
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:layout_marginHorizontal="30dp"
-                        android:layout_marginBottom="10dp"
-                        android:background="@drawable/rounded_activities"
-                        android:elevation="5dp"
-                        android:text="You should visit..."
-                        android:textStyle="italic" />
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_row="0"
+                            android:layout_column="0"
+                            android:layout_columnWeight="1"
+                            android:layout_gravity="fill_horizontal"
+                            android:text="Cell 0"
+                            android:textSize="14dip">
 
-                    <Button
-                        android:id="@+id/FoodButton"
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:layout_marginHorizontal="30dp"
-                        android:layout_marginBottom="10dp"
-                        android:background="@drawable/rounded_activities"
-                        android:elevation="5dp"
-                        android:text="Best places to eat here"
-                        android:textStyle="italic" />
-                </LinearLayout>
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/NewsButton"
+                                android:layout_width="0dp"
+                                android:layout_height="0dp"
+                                android:layout_margin="15dp"
+                                app:cardElevation="0dp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintDimensionRatio="1:1"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
+
+                                <androidx.constraintlayout.utils.widget.ImageFilterView
+                                    android:layout_width="50dp"
+                                    android:layout_height="50dp"
+                                    android:layout_gravity="center"
+                                    android:layout_marginBottom="10dp"
+                                    android:src="@drawable/ic_news"
+                                    android:translationZ="2dp"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintHorizontal_bias="0.95"
+                                    app:layout_constraintStart_toStartOf="parent" />
+
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:background="@drawable/rounded_cardview_details_of_trip"
+                                    android:gravity="center"
+                                    android:paddingTop="60dp"
+                                    android:text="News"
+                                    android:textAlignment="center"
+                                    android:textColor="#FFFFFF"
+                                    android:textSize="16dp"
+                                    android:textStyle="bold"
+                                    android:translationZ="1dp"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintHorizontal_bias="1.0"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    app:layout_constraintVertical_bias="0.0" />
+
+                            </androidx.cardview.widget.CardView>
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_row="0"
+                            android:layout_column="1"
+                            android:layout_columnWeight="1"
+                            android:layout_gravity="fill_horizontal"
+                            android:text="Cell 0"
+                            android:textSize="14dip">
+
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/TuristicButton"
+                                android:layout_width="0dp"
+                                android:layout_height="0dp"
+                                android:layout_margin="15dp"
+                                app:cardElevation="0dp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintDimensionRatio="1:1"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
+
+                                <androidx.constraintlayout.utils.widget.ImageFilterView
+                                    android:layout_width="50dp"
+                                    android:layout_height="50dp"
+                                    android:layout_gravity="center"
+                                    android:layout_marginBottom="10dp"
+                                    android:src="@drawable/ic_places"
+                                    android:translationZ="2dp"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintHorizontal_bias="0.95"
+                                    app:layout_constraintStart_toStartOf="parent" />
+
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:background="@drawable/rounded_cardview_details_of_trip"
+                                    android:gravity="center"
+                                    android:paddingTop="60dp"
+                                    android:text="Places"
+                                    android:textAlignment="center"
+                                    android:textColor="#FFFFFF"
+                                    android:textSize="16dp"
+                                    android:textStyle="bold"
+                                    android:translationZ="1dp"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintHorizontal_bias="1.0"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    app:layout_constraintVertical_bias="0.0" />
+
+                            </androidx.cardview.widget.CardView>
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_row="1"
+                            android:layout_column="0"
+                            android:layout_columnWeight="1"
+                            android:layout_gravity="fill_horizontal"
+                            android:text="Cell 0"
+                            android:textSize="14dip">
+
+                            <androidx.cardview.widget.CardView
+                                android:layout_width="0dp"
+                                android:layout_height="0dp"
+                                android:layout_margin="15dp"
+                                app:cardElevation="0dp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintDimensionRatio="1:1"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
+
+                                <androidx.constraintlayout.utils.widget.ImageFilterView
+                                    android:layout_width="50dp"
+                                    android:layout_height="50dp"
+                                    android:layout_gravity="center"
+                                    android:layout_marginBottom="10dp"
+                                    android:src="@drawable/ic_info"
+                                    android:translationZ="2dp"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintHorizontal_bias="0.95"
+                                    app:layout_constraintStart_toStartOf="parent" />
+
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:background="@drawable/rounded_cardview_details_of_trip"
+                                    android:gravity="center"
+                                    android:paddingTop="60dp"
+                                    android:text="Info Covid 19"
+                                    android:textAlignment="center"
+                                    android:textColor="#FFFFFF"
+                                    android:textSize="16dp"
+                                    android:textStyle="bold"
+                                    android:translationZ="1dp"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintHorizontal_bias="1.0"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    app:layout_constraintVertical_bias="0.0" />
+
+                            </androidx.cardview.widget.CardView>
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_row="1"
+                            android:layout_column="1"
+                            android:layout_columnWeight="1"
+                            android:layout_gravity="fill_horizontal"
+                            android:text="Cell 0"
+                            android:textSize="14dip">
+
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/FoodButton"
+                                android:layout_width="0dp"
+                                android:layout_height="0dp"
+                                android:layout_margin="15dp"
+                                app:cardElevation="0dp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintDimensionRatio="1:1"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
+
+                                <androidx.constraintlayout.utils.widget.ImageFilterView
+                                    android:layout_width="50dp"
+                                    android:layout_height="50dp"
+                                    android:layout_gravity="center"
+                                    android:layout_marginBottom="10dp"
+                                    android:src="@drawable/ic_food"
+                                    android:translationZ="2dp"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintHorizontal_bias="0.95"
+                                    app:layout_constraintStart_toStartOf="parent" />
+
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:background="@drawable/rounded_cardview_details_of_trip"
+                                    android:gravity="center"
+                                    android:paddingTop="60dp"
+                                    android:text="Food"
+                                    android:textAlignment="center"
+                                    android:textColor="#FFFFFF"
+                                    android:textSize="16dp"
+                                    android:textStyle="bold"
+                                    android:translationZ="1dp"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintHorizontal_bias="1.0"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    app:layout_constraintVertical_bias="0.0" />
+
+                            </androidx.cardview.widget.CardView>
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                    </GridLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <android.widget.Button
                     android:id="@+id/next_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
-                    android:text="Button"
+                    android:background="@drawable/rounded_button"
+                    android:backgroundTint="@color/yellow"
+                    android:paddingHorizontal="40dp"
+                    android:text="Next"
+                    android:textColor="@color/black"
+                    android:textFontWeight="500"
+                    android:layout_marginTop="50dp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.95"
-                    app:layout_constraintStart_toStartOf="parent" />
-
+                    app:layout_constraintEnd_toEndOf="@+id/ReturnDateDatePicker"
+                    app:layout_constraintHorizontal_bias="0.535"
+                    app:layout_constraintStart_toStartOf="@+id/ReturnDateDatePicker"
+                    app:layout_constraintTop_toBottomOf="@+id/ReturnDateDatePicker"
+                    app:layout_constraintVertical_bias="0.701" />
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
