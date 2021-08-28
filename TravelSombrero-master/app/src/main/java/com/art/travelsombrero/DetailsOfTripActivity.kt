@@ -12,6 +12,8 @@ class DetailsOfTripActivity() : AppCompatActivity() {
     private lateinit var binding: ActivityDetailsOfTripBinding
     private lateinit var dest : DestinationDataModel
     private var url = "https://api.openweathermap.org/data/2.5/onecall?lat=40.7127281&lon=-74.0060152&units=metric&exclude=alerts,daily,hourly,minutely&appid=3541a6b71392e3d36a797bb75bc11f50"
+    private var url_icon = "https://openweathermap.org/img/wn/"
+    private var final_icon = "@2x.png"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,7 +63,6 @@ class DetailsOfTripActivity() : AppCompatActivity() {
             intent.putExtra("city", city)
             startActivity(intent)
         }
-
         var q = URL(url).readText().split("current")
         var q1 = q[1].split("temp")
         var q2 = q1[1]
@@ -69,14 +70,15 @@ class DetailsOfTripActivity() : AppCompatActivity() {
         var temp1 = temp[0].substring(2)
         var temp2 = temp1.split(".")
         var temp3 = StringBuilder()
-        var r = " °C"
+        var celsius = "°C"
         temp3.append(temp2[0])
-        temp3.append(r)
-        var meteo = q2.split("description")
-        var meteo2 = meteo[1].split(",")
-        var meteo3 = meteo2[0].substring(3,meteo2[0].length-1)
-        binding.meteoTextView.text = temp3.toString()
-        binding.temperaturaTextView.text = meteo3
+        temp3.append(celsius)
+        var icon = q2.split("icon")
+        var icon2 = icon[1].split(",")
+        var icon3 = icon2[0].substring(3,icon2[0].length-5).trim()
+        var link_icon = url_icon+icon3+final_icon
+        binding.temperaturaTextView.text = temp3.toString()
+        Picasso.get().load(link_icon).into(binding.meteoIcon)
     }
 
 }

@@ -40,9 +40,11 @@
                 android:orientation="vertical"
                 android:gravity="center_horizontal">
 
+
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
+
 
                     <TextView
                         android:id="@+id/city_name"
@@ -57,52 +59,47 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.235" />
+                        app:layout_constraintVertical_bias="0.53" />
 
                     <TextView
                         android:id="@+id/temperaturaTextView"
-                        android:layout_width="62dp"
-                        android:layout_height="36dp"
-                        android:background="@drawable/rounded_temp_trip"
-                        android:text="TEMPERATURA"
+                        android:layout_width="60dp"
+                        android:layout_height="30dp"
+                        android:layout_marginEnd="40dp"
+                        android:text="TEMP"
                         android:textColor="@color/black"
+                        android:textSize="25dp"
+                        android:textStyle="bold"
+                        android:translationZ="1dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.61"
-                        app:layout_constraintStart_toEndOf="@+id/state_name"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.592" />
-
-                    <TextView
-                        android:id="@+id/meteoTextView"
-                        android:layout_width="62dp"
-                        android:layout_height="36dp"
-                        android:background="@drawable/rounded_temp_trip"
-                        android:text="METEO"
-                        android:textColor="@color/black"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.92"
-                        app:layout_constraintStart_toEndOf="@+id/state_name"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.592" />
+                        app:layout_constraintVertical_bias="0.52" />
 
                     <TextView
                         android:id="@+id/state_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
-                        android:layout_marginTop="18dp"
                         android:text="USA"
                         android:textColor="@color/black"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/city_name"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.265" />
+                        app:layout_constraintVertical_bias="0.557" />
+
+                    <ImageView
+                        android:id="@+id/meteoIcon"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="1.0"
+                        app:layout_constraintStart_toEndOf="@+id/state_name"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.0" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
