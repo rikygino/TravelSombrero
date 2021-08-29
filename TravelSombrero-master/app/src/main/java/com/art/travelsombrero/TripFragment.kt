@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -101,7 +102,6 @@ class TripFragment : Fragment(), TripRecyclerViewAdapter.ClickListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(bool){
                     snapshot.children.forEach{
-
                         val trip= it.getValue(TripDataModel::class.java)
                         if (trip != null) {
                             listData.add(trip)
@@ -123,8 +123,37 @@ class TripFragment : Fragment(), TripRecyclerViewAdapter.ClickListener {
     }
 
     override fun onItemClick(tripDatamodel: TripDataModel) {
-        var intent = Intent(context, DetailsOfTripActivity::class.java)
-        startActivity(intent)
+        val ref = FirebaseDatabase.getInstance().getReference("/destinations/${tripDatamodel.city}")
+        ref.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val destination= snapshot.getValue(DestinationDataModel::class.java)
+                if(destination != null){
+                    var intent = Intent(context, ModifyTripActivity::class.java)
+                    val alpha_3 = destination.alpha_3
+                    val imageUrl = destination.imageUrl
+                    val locCode = destination.locCode
+                    val state = destination.state
+                    intent.putExtra("alpha_3", alpha_3)
+                    intent.putExtra("imageUrl", imageUrl)
+                    intent.putExtra("locCode", locCode)
+                    intent.putExtra("state", state)
+                    val tripname = tripDatamodel.tripname
+                    val city = tripDatamodel.city
+                    val depdate = tripDatamodel.depdate
+                    val retdate = tripDatamodel.retdate
+                    intent.putExtra("tripname", tripname)
+                    intent.putExtra("city", city)
+                    intent.putExtra("depdate", depdate)
+                    intent.putExtra("retdate", retdate)
+                    startActivity(intent)
+                }else{
+                    Toast.makeText(context,"Error!",Toast.LENGTH_LONG).show()
+                }
+            }
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+        })
     }
 
 }

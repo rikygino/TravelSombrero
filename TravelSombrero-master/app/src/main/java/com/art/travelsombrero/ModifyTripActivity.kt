@@ -4,13 +4,15 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.StrictMode
-import com.art.travelsombrero.databinding.ActivityDetailsOfTripBinding
+import android.util.Log
+import com.art.travelsombrero.databinding.ActivityModifyTripBinding
 import com.squareup.picasso.Picasso
 import java.net.URL
 
-class DetailsOfTripActivity() : AppCompatActivity() {
-    private lateinit var binding: ActivityDetailsOfTripBinding
+class ModifyTripActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityModifyTripBinding
     private lateinit var dest : DestinationDataModel
+    private lateinit var trip : TripDataModel
     private var url = "https://api.openweathermap.org/data/2.5/onecall?lat=40.7127281&lon=-74.0060152&units=metric&exclude=alerts,daily,hourly,minutely&appid=3541a6b71392e3d36a797bb75bc11f50"
     private var url_icon = "https://openweathermap.org/img/wn/"
     private var final_icon = "@2x.png"
@@ -18,7 +20,7 @@ class DetailsOfTripActivity() : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = ActivityDetailsOfTripBinding.inflate(layoutInflater)
+        binding = ActivityModifyTripBinding.inflate(layoutInflater)
         setContentView(binding.root)
         StrictMode.enableDefaults()
 
@@ -30,16 +32,21 @@ class DetailsOfTripActivity() : AppCompatActivity() {
                 extras.getSerializable("imageUrl").toString(),
                 extras.getSerializable("locCode").toString(),
                 extras.getSerializable("state").toString())
+            trip = TripDataModel(extras.getSerializable("tripname").toString(),
+                extras.getSerializable("depdate").toString(),
+                extras.getSerializable("retdate").toString(),
+                extras.getSerializable("city").toString())
 
             binding.cityName.text = dest.city
             binding.stateName.text = dest.state
             Picasso.get().load(dest.imageUrl).into(binding.cityImage)
 
+            binding.modifyButton.setOnClickListener {
+                var intent = Intent( this, LuggageActivity::class.java)
+                val tripname = trip.tripname
+                intent.putExtra("tripname", tripname)
+                Log.d( "QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ", "Email is $tripname")
 
-            binding.nextButton.setOnClickListener {
-                var intent = Intent( this, InsertDataTripActivity::class.java)
-                val city = dest.city
-                intent.putExtra("city", city)
                 startActivity(intent)
             }
 
@@ -81,5 +88,4 @@ class DetailsOfTripActivity() : AppCompatActivity() {
             Picasso.get().load(link_icon).into(binding.meteoIcon)
         }
     }
-
 }

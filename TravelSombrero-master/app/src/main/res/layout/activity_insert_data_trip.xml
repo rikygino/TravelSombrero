@@ -139,10 +139,10 @@
                 android:textFontWeight="500"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/ReturnDateDatePicker"
-                app:layout_constraintHorizontal_bias="0.535"
+                app:layout_constraintHorizontal_bias="0.503"
                 app:layout_constraintStart_toStartOf="@+id/ReturnDateDatePicker"
                 app:layout_constraintTop_toBottomOf="@+id/ReturnDateDatePicker"
-                app:layout_constraintVertical_bias="0.701" />
+                app:layout_constraintVertical_bias="0.669" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>
 </LinearLayout>

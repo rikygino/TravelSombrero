@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.constraintlayout.utils.widget.ImageFilterView
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -52,7 +53,7 @@ class LuggageFragment(var tripname: String) : Fragment(), LuggageRecyclerViewAda
                 mAlertDialog.dismiss()
             }
         }
-        val homebutton = view.findViewById<Button>(R.id.homeButton)
+        val homebutton = view.findViewById<ImageFilterView>(R.id.homeButton)
         homebutton.setOnClickListener {
             var intent = Intent(context, HomeActivity::class.java)
             intent.putExtra("home", true)

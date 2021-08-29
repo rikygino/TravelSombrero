@@ -17,9 +17,6 @@ class AddObjectActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_object)
 
-
-        Log.d("Register Activity", "OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO")
-
         var tripname=""
         var extras = intent.extras
         if (extras != null) {

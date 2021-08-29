@@ -123,6 +123,7 @@ class NewTripFragment : Fragment(), DestinationRecyclerViewAdapter.ClickListener
         val imageUrl = destinationDataModel.imageUrl
         val locCode = destinationDataModel.locCode
         val state = destinationDataModel.state
+
         intent.putExtra("alpha_3", alpha_3)
         intent.putExtra("city", city)
         intent.putExtra("imageUrl", imageUrl)

@@ -20,11 +20,20 @@ class TripRecyclerViewAdapter(val listData: List<TripDataModel>, val clickListen
 
     class ViewHolder(view: View): RecyclerView.ViewHolder(view) {
         var tripName: TextView = view.findViewById(R.id.trip_name)
-
+        var depDate: TextView = view.findViewById(R.id.depdateTextView)
+        var retDate: TextView = view.findViewById(R.id.retDateTextView)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.tripName.text = listData.get(position).tripname
+        holder.itemView.setOnClickListener(){
+            clickListener.onItemClick(listData.get(position))
+        }
+        holder.depDate.text = "Departure Date: "+listData.get(position).depdate
+        holder.itemView.setOnClickListener(){
+            clickListener.onItemClick(listData.get(position))
+        }
+        holder.retDate.text = "Return Date: "+listData.get(position).retdate
         holder.itemView.setOnClickListener(){
             clickListener.onItemClick(listData.get(position))
         }

@@ -4,6 +4,7 @@ import android.app.AlertDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.KeyEvent
 import androidx.fragment.app.Fragment
 import com.art.travelsombrero.databinding.ActivityLuggageBinding
@@ -15,14 +16,16 @@ class LuggageActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding = ActivityLuggageBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         var extras = intent.extras
         if (extras != null) {
             tripname = extras.getSerializable("tripname").toString()
+            Log.d( "QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ", "Email is $tripname")
+
+            val luggageFragment = LuggageFragment(tripname)
+            replaceFragment(luggageFragment,"luggage_fragment")
         }
-        val luggageFragment = LuggageFragment(tripname)
-        binding = ActivityLuggageBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-        replaceFragment(luggageFragment,"luggage_fragment")
     }
 
     private fun replaceFragment(fragment: Fragment, tag: String){
