@@ -25,15 +25,26 @@ class InsertDataTripActivity : AppCompatActivity() {
             var tripname = binding.TripNameEditText.text.toString()
             var depdateday = binding.DepartureDateDatePicker.dayOfMonth
             var depdatemonth = binding.DepartureDateDatePicker.month+1
-            depdatemonth.toString()
             var depdateyear = binding.DepartureDateDatePicker.year
-            var depdate = depdateday.toString()+"/"+depdatemonth.toString()+"/"+depdateyear.toString()
+            var depdate : String
+            if(depdatemonth>=1&&depdatemonth<=9){
+                depdate = depdateday.toString()+"/0"+depdatemonth.toString()+"/"+depdateyear.toString()
+            }
+            else depdate = depdateday.toString()+"/"+depdatemonth.toString()+"/"+depdateyear.toString()
             var retdateday = binding.ReturnDateDatePicker.dayOfMonth
             var retdatemonth = binding.ReturnDateDatePicker.month+1
-            retdatemonth.toString()
             var retdateyear = binding.ReturnDateDatePicker.year
-            var retdate = retdateday.toString()+"/"+retdatemonth.toString()+"/"+retdateyear.toString()
-            Log.d( "AAAAAAAAAAAAAAAA",  "$depdate 00000000000 $retdate")
+            var retdate : String
+            if(retdateday>=1&&retdateday<=9&&retdatemonth>=1&&retdatemonth<=9){
+                retdate = "0"+retdateday.toString()+"/0"+retdatemonth.toString()+"/"+retdateyear.toString()
+            }
+            else if(retdateday>=1&&retdateday<=9){
+                retdate = "0"+retdateday.toString()+"/"+retdatemonth.toString()+"/"+retdateyear.toString()
+            }
+            else if(retdatemonth>=1&&retdatemonth<=9){
+                retdate = retdateday.toString()+"/0"+retdatemonth.toString()+"/"+retdateyear.toString()
+            }
+            else retdate = retdateday.toString()+"/"+retdatemonth.toString()+"/"+retdateyear.toString()
             if(tripname=="") {
                 Toast.makeText(this, "Name your trip", Toast.LENGTH_LONG).show()
             }

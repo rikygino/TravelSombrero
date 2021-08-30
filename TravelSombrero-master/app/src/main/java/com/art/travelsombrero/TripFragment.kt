@@ -1,15 +1,20 @@
 package com.art.travelsombrero
 
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Intent
+import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -18,18 +23,20 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
 class TripFragment : Fragment(), TripRecyclerViewAdapter.ClickListener {
 
     private lateinit var adapter: TripRecyclerViewAdapter
     val listData: ArrayList<TripDataModel> = ArrayList()
-    private var bool = true
     private lateinit var recyclerView: RecyclerView
+    private var oldnew = true
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-
         }
     }
 
@@ -39,14 +46,33 @@ class TripFragment : Fragment(), TripRecyclerViewAdapter.ClickListener {
     ): View? {
         // Inflate the layout for this fragment
         var view = inflater.inflate(R.layout.fragment_trip, container, false)
-        initRecyclerView(view)
+        initRecyclerView(view,oldnew)
+        val oldbtn = view.findViewById<Button>(R.id.old_trips_button)
+        val upcomingbtn = view.findViewById<Button>(R.id.upcoming_trips_button)
+        oldbtn.setOnClickListener {
+            if(oldnew){
+                upcomingbtn.setBackgroundResource(R.drawable.squared_trip_navbar)
+                oldbtn.setBackgroundResource(R.drawable.squared_trip_navbar_selected)
+                oldnew = false
+                initRecyclerView(view,oldnew)
+            }
+        }
+        upcomingbtn.setOnClickListener {
+            if(!oldnew){
+                oldbtn.setBackgroundResource(R.drawable.squared_trip_navbar)
+                upcomingbtn.setBackgroundResource(R.drawable.squared_trip_navbar_selected)
+                oldnew = true
+                initRecyclerView(view,oldnew)
+            }
+        }
         return view
     }
 
-    private fun initRecyclerView(view: View) {
+    private fun initRecyclerView(view: View, oldnew : Boolean) {
         recyclerView = view.findViewById(R.id.trips_recycler_view)
         recyclerView.layoutManager = LinearLayoutManager(activity)
-        fetchDataFirebase(recyclerView, this,view)
+        listData.clear()
+        fetchDataFirebase(recyclerView, this,view, oldnew)
 
         recyclerView.adapter = TripRecyclerViewAdapter(listData, this)
 
@@ -95,26 +121,42 @@ class TripFragment : Fragment(), TripRecyclerViewAdapter.ClickListener {
     }
 
 
-    private fun fetchDataFirebase(recyclerView: RecyclerView, context: TripFragment,view: View){
+
+    private fun fetchDataFirebase(recyclerView: RecyclerView, context: TripFragment, view: View, oldnew: Boolean){
         val uid = FirebaseAuth.getInstance().uid ?: ""
         val ref = FirebaseDatabase.getInstance().getReference("/users/$uid/mytrips")
         ref.addListenerForSingleValueEvent(object : ValueEventListener {
+            @RequiresApi(Build.VERSION_CODES.O)
             override fun onDataChange(snapshot: DataSnapshot) {
-                if(bool){
                     snapshot.children.forEach{
                         val trip= it.getValue(TripDataModel::class.java)
+                        val tripdata = trip?.retdate
+                        var formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy")
+                        var retdate = LocalDate.parse(tripdata,formatter)
+                        var currentdate = LocalDate.now()
                         if (trip != null) {
-                            listData.add(trip)
+                            if(oldnew&&((retdate.year>currentdate.year)||(retdate.year==currentdate.year&&retdate.monthValue>currentdate.monthValue)||(retdate.year==currentdate.year&&retdate.monthValue==currentdate.monthValue&&retdate.dayOfMonth>=currentdate.dayOfMonth))){
+                                listData.add(trip)
+                            }
+                            else if((!oldnew)&&((retdate.year<currentdate.year)||(retdate.year==currentdate.year&&retdate.monthValue<currentdate.monthValue)||(retdate.year==currentdate.year&&retdate.monthValue==currentdate.monthValue&&retdate.dayOfMonth<currentdate.dayOfMonth))){
+                                listData.add(trip)
+                            }
                         }
                     }
-                }
-                if(listData.isEmpty()){
+                if(listData.isEmpty()&&oldnew){
                     val noTrips = view.findViewById<TextView>(R.id.no_trips)
                     noTrips.text = "You don't have planned any trip yet..."
                 }
+                else if(listData.isEmpty()&&!oldnew){
+                    val noTrips = view.findViewById<TextView>(R.id.no_trips)
+                    noTrips.text = "You don't have completed any trip yet..."
+                }
+                else{
+                    val noTrips = view.findViewById<TextView>(R.id.no_trips)
+                    noTrips.text = ""
+                }
                 adapter = TripRecyclerViewAdapter(listData, context)
                 recyclerView.adapter = adapter
-                bool = false
             }
             override fun onCancelled(error: DatabaseError) {
 
@@ -155,5 +197,6 @@ class TripFragment : Fragment(), TripRecyclerViewAdapter.ClickListener {
             }
         })
     }
+
 
 }
