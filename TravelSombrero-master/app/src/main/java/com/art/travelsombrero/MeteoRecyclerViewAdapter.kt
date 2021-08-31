@@ -33,17 +33,14 @@ class MeteoRecyclerViewAdapter(val objectList: List<MeteoFragment.MeteoDataModel
         holder.temp_day.text = objectList.get(position).temp_day
         holder.temp_min.text = objectList.get(position).temp_min
         holder.temp_max.text = objectList.get(position).temp_max
-        holder.icon.text = objectList.get(position).iconUrl
         holder.description.text = objectList.get(position).description
         holder.wind.text = objectList.get(position).wind
 
         Picasso.get().load(objectList.get(position).iconUrl).into(holder.image)
 
-
-
     }
 
     interface ClickListener {
-        fun onItemClick(luggageDataModel: LuggageDataModel)
+        fun onItemClick(meteoDataModel: MeteoFragment.MeteoDataModel)
     }
 }
