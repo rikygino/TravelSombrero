@@ -14,7 +14,10 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 
 
 class AuthenticationActivity : AppCompatActivity(){
@@ -50,7 +53,6 @@ class AuthenticationActivity : AppCompatActivity(){
                 finish()
             }
         }, 0)
-
 
         binding.google.setOnClickListener{
             signIn()
@@ -112,19 +114,34 @@ class AuthenticationActivity : AppCompatActivity(){
 
     private fun saveUserToFirebaseDatabase(){
         val uid = FirebaseAuth.getInstance().uid ?: ""
-        val ref = FirebaseDatabase.getInstance().getReference("/users/$uid")
+        val refwrite = FirebaseDatabase.getInstance().getReference("/users/$uid")
         val username = FirebaseAuth.getInstance().currentUser?.displayName
         val user = username?.let { User(uid, it) }
-        ref.setValue(user)
-            .addOnSuccessListener {
-                Log.d("Register Activity", "Utente salvato anche nel DB")
-                var intent = Intent( this, HomeActivity::class.java)
-                startActivity(intent)
+        refwrite.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                        var onDB = snapshot.getValue(User2::class.java)
+                if (onDB != null) {
+                    if (onDB.username == ""){
+                        refwrite.setValue(user)
+                            .addOnSuccessListener {
+                                Log.d("Register Activity", "Utente salvato anche nel DB")
+                                var intent = Intent(this@AuthenticationActivity, HomeActivity::class.java)
+                                startActivity(intent)
+                            }
+                            .addOnFailureListener {
+                                Toast.makeText(this@AuthenticationActivity, "Impossibile salvare l'utente nel DB ${it.message}", Toast.LENGTH_LONG).show()
+                            }
+                    }
+                }
             }
-            .addOnFailureListener {
-                Toast.makeText(this, "Impossibile salvare l'utente nel DB ${it.message}", Toast.LENGTH_LONG).show()
-            }
+            override fun onCancelled(error: DatabaseError) {}
+        })
+
     }
+}
+
+class User2(val uid:String, val username: String){
+    constructor() : this("","")
 }
 
 
