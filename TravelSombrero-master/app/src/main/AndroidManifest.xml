@@ -27,7 +27,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ItemActivity"
+            android:name=".MeteoActivity"
             android:exported="true" />
         <activity
             android:name=".TuristicActivity"

@@ -65,7 +65,7 @@
                         android:id="@+id/temperaturaTextView"
                         android:layout_width="60dp"
                         android:layout_height="30dp"
-                        android:layout_marginEnd="40dp"
+                        android:layout_marginEnd="60dp"
                         android:text="TEMP"
                         android:textColor="@color/black"
                         android:textSize="25dp"
@@ -73,8 +73,7 @@
                         android:translationZ="1dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.52" />
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
                         android:id="@+id/state_name"
@@ -358,6 +357,12 @@
                     app:layout_constraintStart_toStartOf="@+id/ReturnDateDatePicker"
                     app:layout_constraintTop_toBottomOf="@+id/ReturnDateDatePicker"
                     app:layout_constraintVertical_bias="0.701" />
+
+                <Button
+                    android:id="@+id/meteoButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Button" />
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>

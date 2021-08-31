@@ -43,6 +43,11 @@ class DetailsOfTripActivity() : AppCompatActivity() {
                 startActivity(intent)
             }
 
+            binding.meteoButton.setOnClickListener {
+                var intent = Intent( this, MeteoActivity::class.java)
+                startActivity(intent)
+            }
+
             binding.NewsButton.setOnClickListener {
                 var intent = Intent( this, NewsActivity::class.java)
                 val city = dest.city
