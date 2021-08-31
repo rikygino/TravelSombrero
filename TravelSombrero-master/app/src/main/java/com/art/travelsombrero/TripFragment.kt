@@ -33,10 +33,10 @@ class TripFragment : Fragment(), TripRecyclerViewAdapter.ClickListener {
     private lateinit var recyclerView: RecyclerView
     private var oldnew = true
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
+            var view = layoutInflater.inflate(R.layout.fragment_trip, null)
         }
     }
 
@@ -46,6 +46,7 @@ class TripFragment : Fragment(), TripRecyclerViewAdapter.ClickListener {
     ): View? {
         // Inflate the layout for this fragment
         var view = inflater.inflate(R.layout.fragment_trip, container, false)
+        oldnew=true
         initRecyclerView(view,oldnew)
         val oldbtn = view.findViewById<Button>(R.id.old_trips_button)
         val upcomingbtn = view.findViewById<Button>(R.id.upcoming_trips_button)
@@ -102,9 +103,13 @@ class TripFragment : Fragment(), TripRecyclerViewAdapter.ClickListener {
             val refremove = FirebaseDatabase.getInstance().getReference("/users/$uid/mytrips/$tripname")
             refremove.removeValue()
             listData.removeAt(position)
-            if(listData.isEmpty()){
+            if(listData.isEmpty()&&oldnew){
                 val noTrips = view.findViewById<TextView>(R.id.no_trips)
                 noTrips.text = "You don't have planned any trip yet..."
+            }
+            else{
+                val noTrips = view.findViewById<TextView>(R.id.no_trips)
+                noTrips.text = "You don't have completed any trip yet..."
             }
             adapter.notifyItemRemoved(position)
         }
@@ -115,7 +120,6 @@ class TripFragment : Fragment(), TripRecyclerViewAdapter.ClickListener {
         builder.setOnCancelListener{
             val position = viewHolder.adapterPosition
             adapter.notifyItemChanged(position)
-
         }
         builder.show()
     }
