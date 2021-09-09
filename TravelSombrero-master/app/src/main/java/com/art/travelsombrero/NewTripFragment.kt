@@ -130,7 +130,6 @@ class NewTripFragment : Fragment(), DestinationRecyclerViewAdapter.ClickListener
         intent.putExtra("locCode", locCode)
         intent.putExtra("state", state)
         startActivity(intent)
-    }
+        }
 
 }
-

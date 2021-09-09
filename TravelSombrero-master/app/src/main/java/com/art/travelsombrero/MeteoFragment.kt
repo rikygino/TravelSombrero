@@ -54,7 +54,7 @@ class MeteoFragment : Fragment() {
 
     private fun initMeteo(view: View){
         recyclerView = view.findViewById(R.id.meteo_recycler_view)
-        recyclerView.layoutManager = LinearLayoutManager(activity)
+        recyclerView.layoutManager = LinearLayoutManager(activity,LinearLayoutManager.HORIZONTAL,false)
 
         val copia = URL(url).readText()
         var q1 = copia

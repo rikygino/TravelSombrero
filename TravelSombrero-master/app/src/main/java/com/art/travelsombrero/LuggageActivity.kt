@@ -21,7 +21,6 @@ class LuggageActivity : AppCompatActivity() {
         var extras = intent.extras
         if (extras != null) {
             tripname = extras.getSerializable("tripname").toString()
-            Log.d( "QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ", "Email is $tripname")
 
             val luggageFragment = LuggageFragment(tripname)
             replaceFragment(luggageFragment,"luggage_fragment")
