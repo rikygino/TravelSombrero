@@ -107,9 +107,13 @@ class TripFragment : Fragment(), TripRecyclerViewAdapter.ClickListener {
                 val noTrips = view.findViewById<TextView>(R.id.no_trips)
                 noTrips.text = "You don't have planned any trip yet..."
             }
-            else{
+            else if(listData.isEmpty()&&!oldnew){
                 val noTrips = view.findViewById<TextView>(R.id.no_trips)
                 noTrips.text = "You don't have completed any trip yet..."
+            }
+            else{
+                val noTrips = view.findViewById<TextView>(R.id.no_trips)
+                noTrips.text = ""
             }
             adapter.notifyItemRemoved(position)
         }
