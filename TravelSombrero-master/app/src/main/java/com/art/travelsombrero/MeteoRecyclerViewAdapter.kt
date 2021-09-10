@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 
 
-class MeteoRecyclerViewAdapter(val objectList: List<MeteoFragment.MeteoDataModel>, val clickListener: MeteoFragment): RecyclerView.Adapter<MeteoRecyclerViewAdapter.ViewHolder>() {
+class MeteoRecyclerViewAdapter(val objectList: List<DetailsOfTripFragment.MeteoDataModel>): RecyclerView.Adapter<MeteoRecyclerViewAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.listview_meteo,parent, false)
         return ViewHolder(view)
@@ -23,9 +23,7 @@ class MeteoRecyclerViewAdapter(val objectList: List<MeteoFragment.MeteoDataModel
         var temp_day: TextView = view.findViewById(R.id.temp_day)
         var temp_min: TextView = view.findViewById(R.id.temp_min)
         var temp_max: TextView = view.findViewById(R.id.temp_max)
-        var icon: TextView = view.findViewById(R.id.icon)
         var image: ImageView = view.findViewById(R.id.iconImageView)
-        var description : TextView = view.findViewById(R.id.description)
         var wind : TextView = view.findViewById(R.id.wind)
     }
 
@@ -33,7 +31,6 @@ class MeteoRecyclerViewAdapter(val objectList: List<MeteoFragment.MeteoDataModel
         holder.temp_day.text = objectList.get(position).temp_day
         holder.temp_min.text = objectList.get(position).temp_min
         holder.temp_max.text = objectList.get(position).temp_max
-        holder.description.text = objectList.get(position).description
         holder.wind.text = objectList.get(position).wind
 
         Picasso.get().load(objectList.get(position).iconUrl).into(holder.image)
@@ -41,6 +38,6 @@ class MeteoRecyclerViewAdapter(val objectList: List<MeteoFragment.MeteoDataModel
     }
 
     interface ClickListener {
-        fun onItemClick(meteoDataModel: MeteoFragment.MeteoDataModel)
+        fun onItemClick(meteoDataModel: DetailsOfTripFragment.MeteoDataModel)
     }
 }

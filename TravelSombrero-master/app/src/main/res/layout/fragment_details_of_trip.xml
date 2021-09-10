@@ -104,11 +104,29 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/meteo_recycler_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#FFFFFF"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
                 <GridLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginRight="30dp"
+                    android:layout_marginLeft="60dp"
+                    android:layout_marginRight="60dp"
                     android:columnCount="2"
                     android:rowCount="2"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -129,7 +147,7 @@
                             android:id="@+id/NewsButton"
                             android:layout_width="0dp"
                             android:layout_height="0dp"
-                            android:layout_margin="15dp"
+                            android:layout_margin="10dp"
                             app:cardElevation="0dp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintDimensionRatio="1:1"
@@ -184,7 +202,7 @@
                             android:id="@+id/TuristicButton"
                             android:layout_width="0dp"
                             android:layout_height="0dp"
-                            android:layout_margin="15dp"
+                            android:layout_margin="10dp"
                             app:cardElevation="0dp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintDimensionRatio="1:1"
@@ -238,7 +256,7 @@
                         <androidx.cardview.widget.CardView
                             android:layout_width="0dp"
                             android:layout_height="0dp"
-                            android:layout_margin="15dp"
+                            android:layout_margin="10dp"
                             app:cardElevation="0dp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintDimensionRatio="1:1"
@@ -293,7 +311,7 @@
                             android:id="@+id/FoodButton"
                             android:layout_width="0dp"
                             android:layout_height="0dp"
-                            android:layout_margin="15dp"
+                            android:layout_margin="10dp"
                             app:cardElevation="0dp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintDimensionRatio="1:1"
@@ -340,29 +358,27 @@
                 </GridLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <android.widget.Button
-                android:id="@+id/next_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/rounded_button"
-                android:backgroundTint="@color/yellow"
-                android:paddingHorizontal="40dp"
-                android:text="Next"
-                android:textColor="@color/black"
-                android:textFontWeight="500"
-                android:layout_marginTop="50dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/ReturnDateDatePicker"
-                app:layout_constraintHorizontal_bias="0.535"
-                app:layout_constraintStart_toStartOf="@+id/ReturnDateDatePicker"
-                app:layout_constraintTop_toBottomOf="@+id/ReturnDateDatePicker"
-                app:layout_constraintVertical_bias="0.701" />
-
-            <Button
-                android:id="@+id/meteoButton"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Button" />
+                android:layout_height="match_parent">
+
+                <android.widget.Button
+                    android:id="@+id/next_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/rounded_button"
+                    android:backgroundTint="@color/yellow"
+                    android:paddingHorizontal="40dp"
+                    android:text="Next"
+                    android:textColor="@color/black"
+                    android:textFontWeight="500"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.498"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
