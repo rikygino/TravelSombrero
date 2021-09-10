@@ -103,7 +103,7 @@ class DetailsOfTripFragment(var dest: DestinationDataModel) : Fragment() {
             intent.putExtra("city", city)
             startActivity(intent)
         }
-        
+
         return view
     }
 
