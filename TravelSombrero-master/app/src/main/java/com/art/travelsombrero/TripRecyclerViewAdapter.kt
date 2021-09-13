@@ -1,10 +1,18 @@
 package com.art.travelsombrero
 
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
+import java.sql.Date
+import java.sql.Time
+import java.time.LocalDate
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.time.temporal.ChronoUnit
 
 class TripRecyclerViewAdapter(val listData: List<TripDataModel>, val clickListener: ClickListener): RecyclerView.Adapter<TripRecyclerViewAdapter.ViewHolder>() {
 
@@ -20,22 +28,33 @@ class TripRecyclerViewAdapter(val listData: List<TripDataModel>, val clickListen
 
     class ViewHolder(view: View): RecyclerView.ViewHolder(view) {
         var tripName: TextView = view.findViewById(R.id.trip_name)
-        var depDate: TextView = view.findViewById(R.id.depdateTextView)
-        var retDate: TextView = view.findViewById(R.id.retDateTextView)
+        var depDate: TextView = view.findViewById(R.id.countdownTextView)
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.tripName.text = listData.get(position).tripname
         holder.itemView.setOnClickListener(){
             clickListener.onItemClick(listData.get(position))
         }
-        holder.depDate.text = "Departure Date: "+listData.get(position).depdate
-        holder.itemView.setOnClickListener(){
-            clickListener.onItemClick(listData.get(position))
+        var formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy")
+        var depdate = LocalDate.parse(listData.get(position).depdate,formatter)
+        var retdate = LocalDate.parse(listData.get(position).retdate,formatter)
+        var currentdate = LocalDate.now()
+        val diff = ChronoUnit.DAYS.between(currentdate,depdate)
+        val diff2 = ChronoUnit.DAYS.between(retdate,currentdate)
+
+        if(diff>0) {
+            holder.depDate.text = diff.toString() + " days left"
+            holder.itemView.setOnClickListener() {
+                clickListener.onItemClick(listData.get(position))
+            }
         }
-        holder.retDate.text = "Return Date: "+listData.get(position).retdate
-        holder.itemView.setOnClickListener(){
-            clickListener.onItemClick(listData.get(position))
+        else if (diff2>0) {
+            holder.depDate.text = "Return date: "+retdate
+        }
+        else {
+            holder.depDate.text = "Trip in progress..."
         }
     }
 
