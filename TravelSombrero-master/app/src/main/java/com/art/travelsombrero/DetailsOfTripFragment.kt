@@ -13,7 +13,6 @@ import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.art.travelsombrero.databinding.FragmentDetailsOfTripBinding
 import com.squareup.picasso.Picasso
 import java.net.URL
 import java.util.ArrayList
@@ -198,15 +197,10 @@ class DetailsOfTripFragment(var dest: DestinationDataModel) : Fragment() {
 
             i++
         }
-        //Toast.makeText(context, "${temp_day.size} , ${temp_min.size} , ${temp_max.size} , ${wind.size} , ${icon.size} , ${description.size}", Toast.LENGTH_LONG).show()
 
 
         recyclerView.adapter = MeteoRecyclerViewAdapter(listData)
 
-    }
-
-    class MeteoDataModel(val temp_day: String, val temp_min: String, val temp_max: String, val wind: String, val iconUrl: String,val description: String){
-        constructor() : this("","","","", "", "")
     }
 
 }

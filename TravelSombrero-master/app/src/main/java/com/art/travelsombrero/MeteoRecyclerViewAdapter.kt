@@ -9,9 +9,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 
 
-class MeteoRecyclerViewAdapter(val objectList: List<DetailsOfTripFragment.MeteoDataModel>): RecyclerView.Adapter<MeteoRecyclerViewAdapter.ViewHolder>() {
+class MeteoRecyclerViewAdapter(val objectList: List<MeteoDataModel>): RecyclerView.Adapter<MeteoRecyclerViewAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.listview_meteo,parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.meteo_item,parent, false)
         return ViewHolder(view)
     }
 
@@ -38,6 +38,6 @@ class MeteoRecyclerViewAdapter(val objectList: List<DetailsOfTripFragment.MeteoD
     }
 
     interface ClickListener {
-        fun onItemClick(meteoDataModel: DetailsOfTripFragment.MeteoDataModel)
+        fun onItemClick(meteoDataModel: MeteoDataModel)
     }
 }
