@@ -50,7 +50,7 @@ public class TuristicActivity extends Activity implements OnItemClickListener {
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             String URL_STRING = extras.getString("turistic");
-            new TuristicActivity.DownloadFeed().execute("https://www.aladyinlondon.com/feed");
+            new TuristicActivity.DownloadFeed().execute(URL_STRING);
         }
     }
 

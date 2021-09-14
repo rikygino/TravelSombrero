@@ -143,7 +143,7 @@ class TripFragment : Fragment(), TripRecyclerViewAdapter.ClickListener {
                         var retdate = LocalDate.parse(tripdata,formatter)
                         var currentdate = LocalDate.now()
                         if (trip != null) {
-                            if(oldnew&&((retdate.year>currentdate.year)||(retdate.year==currentdate.year&&retdate.monthValue>currentdate.monthValue)||(retdate.year==currentdate.year&&retdate.monthValue==currentdate.monthValue&&retdate.dayOfMonth>=currentdate.dayOfMonth))){
+                            if(oldnew&&((retdate.year>currentdate.year) ||(retdate.year==currentdate.year&&retdate.monthValue>currentdate.monthValue)||(retdate.year==currentdate.year&&retdate.monthValue==currentdate.monthValue&&retdate.dayOfMonth>=currentdate.dayOfMonth))){
                                 listData.add(trip)
                             }
                             else if((!oldnew)&&((retdate.year<currentdate.year)||(retdate.year==currentdate.year&&retdate.monthValue<currentdate.monthValue)||(retdate.year==currentdate.year&&retdate.monthValue==currentdate.monthValue&&retdate.dayOfMonth<currentdate.dayOfMonth))){
@@ -202,13 +202,17 @@ class TripFragment : Fragment(), TripRecyclerViewAdapter.ClickListener {
                     intent.putExtra("news", news)
                     intent.putExtra("state", state)
                     intent.putExtra("turistic", turistic)
+
+
                     val tripname = tripDatamodel.tripname
                     val depdate = tripDatamodel.depdate
                     val retdate = tripDatamodel.retdate
+
                     intent.putExtra("tripname", tripname)
                     intent.putExtra("city", city)
                     intent.putExtra("depdate", depdate)
                     intent.putExtra("retdate", retdate)
+
                     startActivity(intent)
                 }else{
                     Toast.makeText(context,"Error!",Toast.LENGTH_LONG).show()

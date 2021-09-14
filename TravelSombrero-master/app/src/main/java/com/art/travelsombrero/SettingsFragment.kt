@@ -1,10 +1,12 @@
 package com.art.travelsombrero
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import com.art.travelsombrero.R
 import com.google.firebase.auth.FirebaseAuth
@@ -38,11 +40,17 @@ class SettingsFragment : Fragment() {
         val email = FirebaseAuth.getInstance().currentUser?.email
         var name = view.findViewById<TextView>(R.id.nameTextView)
         var myemail = view.findViewById<TextView>(R.id.emailTextView)
+        var logout = view.findViewById<Button>(R.id.logout_button)
         name.text = username
         myemail.text = email
 
         name.setOnClickListener {
+        }
 
+        logout.setOnClickListener {
+            FirebaseAuth.getInstance().signOut();
+            val intent = Intent(context, AuthenticationActivity::class.java)
+            startActivity(intent)
         }
     }
 
