@@ -1,10 +1,8 @@
 package com.art.travelsombrero
 
 import android.content.Intent
-import android.icu.text.IDNA
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -12,21 +10,19 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
 import com.squareup.picasso.Picasso
 import java.net.URL
 import java.util.ArrayList
 
-class DetailsOfTripFragment(var dest: DestinationDataModel) : Fragment() {
-
-    private lateinit var adapter: MeteoRecyclerViewAdapter
+/**
+ * A simple [Fragment] subclass.
+ * Use the [ModifyTripFragment.newInstance] factory method to
+ * create an instance of this fragment.
+ */
+class ModifyTripFragment(var dest: DestinationDataModel, var trip: TripDataModel) : Fragment() {    private lateinit var adapter: MeteoRecyclerViewAdapter
     val listData: ArrayList<MeteoDataModel> = ArrayList()
     private lateinit var recyclerView: RecyclerView
 
@@ -47,6 +43,7 @@ class DetailsOfTripFragment(var dest: DestinationDataModel) : Fragment() {
     var icon: ArrayList<String> = ArrayList()
     var description: ArrayList<String> = ArrayList()
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -54,9 +51,9 @@ class DetailsOfTripFragment(var dest: DestinationDataModel) : Fragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.fragment_details_of_trip, container, false)
+        val view = inflater.inflate(R.layout.fragment_modify_trip, container, false)
 
-        var urlCurrent = start_url + dest.lat + mid_url +  dest.lon + end_urlCurrent
+        var urlCurrent = start_url + dest.lat + mid_url + dest.lon + end_urlCurrent
 
         var q = URL(urlCurrent).readText().split("current")
         var q1 = q[1].split("temp")
@@ -84,6 +81,13 @@ class DetailsOfTripFragment(var dest: DestinationDataModel) : Fragment() {
         statename.text = dest.state
         Picasso.get().load(dest.imageUrl).into(view.findViewById<ImageView>(R.id.city_image))
 
+        val modifyButton = view.findViewById<Button>(R.id.modify_button)
+        modifyButton.setOnClickListener {
+            var intent = Intent( context, LuggageActivity::class.java)
+            val tripname = trip.tripname
+            intent.putExtra("tripname", tripname)
+            startActivity(intent)
+        }
         val infoCovid = view.findViewById<CardView>(R.id.InfoCovid19)
         infoCovid.setOnClickListener {
             val url = dest.farnesina
@@ -91,38 +95,25 @@ class DetailsOfTripFragment(var dest: DestinationDataModel) : Fragment() {
             intent.data = Uri.parse(url)
             startActivity(intent)
         }
-        val nextButton = view.findViewById<Button>(R.id.next_button)
-        nextButton.setOnClickListener {
-            var intent = Intent( context, InsertDataTripActivity::class.java)
-            val city = dest.city
-            intent.putExtra("city", city)
-            startActivity(intent)
-        }
         val NewsButton = view.findViewById<CardView>(R.id.NewsButton)
         NewsButton.setOnClickListener {
             var intent = Intent( context, NewsActivity::class.java)
             val city = dest.city
-            val news = dest.news
             intent.putExtra("city", city)
-            intent.putExtra("news", news)
             startActivity(intent)
         }
         val FoodButton = view.findViewById<CardView>(R.id.FoodButton)
         FoodButton.setOnClickListener {
             var intent = Intent( context, FoodActivity::class.java)
             val city = dest.city
-            val food = dest.food
             intent.putExtra("city", city)
-            intent.putExtra("food", food)
             startActivity(intent)
         }
         val TuristicButton = view.findViewById<CardView>(R.id.TuristicButton)
         TuristicButton.setOnClickListener {
             var intent = Intent( context, TuristicActivity::class.java)
             val city = dest.city
-            val turistic = dest.turistic
             intent.putExtra("city", city)
-            intent.putExtra("turistic", turistic)
             startActivity(intent)
         }
 

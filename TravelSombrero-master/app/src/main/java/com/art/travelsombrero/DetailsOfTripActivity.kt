@@ -27,9 +27,15 @@ class DetailsOfTripActivity() : AppCompatActivity() {
             dest = DestinationDataModel(
                 extras.getSerializable("alpha_3").toString(),
                 extras.getSerializable("city").toString(),
+                extras.getSerializable("farnesina").toString(),
+                extras.getSerializable("food").toString(),
                 extras.getSerializable("imageUrl").toString(),
+                extras.getSerializable("lat").toString(),
                 extras.getSerializable("locCode").toString(),
-                extras.getSerializable("state").toString())
+                extras.getSerializable("lon").toString(),
+                extras.getSerializable("news").toString(),
+                extras.getSerializable("state").toString(),
+                extras.getSerializable("turistic").toString())
             val detailsOfTripFragment= DetailsOfTripFragment(dest)
             replaceFragment(detailsOfTripFragment,"boh")
         }

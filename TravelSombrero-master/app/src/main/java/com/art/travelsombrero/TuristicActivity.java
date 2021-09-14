@@ -30,7 +30,6 @@ import android.widget.AdapterView.OnItemClickListener;
 
 public class TuristicActivity extends Activity implements OnItemClickListener {
 
-    private final String URL_STRING = "https://loving-newyork.com/feed/";
     private final String FILENAME = "news_feed.xml";
 
     private RSSFeed feed;
@@ -48,7 +47,11 @@ public class TuristicActivity extends Activity implements OnItemClickListener {
 
         itemsListView.setOnItemClickListener(this);
 
-        new TuristicActivity.DownloadFeed().execute(URL_STRING);
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            String URL_STRING = extras.getString("turistic");
+            new TuristicActivity.DownloadFeed().execute("https://www.aladyinlondon.com/feed");
+        }
     }
 
     class DownloadFeed extends AsyncTask<String, Void, Void> {

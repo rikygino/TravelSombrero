@@ -180,15 +180,29 @@ class TripFragment : Fragment(), TripRecyclerViewAdapter.ClickListener {
                 if(destination != null){
                     var intent = Intent(context, ModifyTripActivity::class.java)
                     val alpha_3 = destination.alpha_3
+                    val city = destination.city
                     val imageUrl = destination.imageUrl
+                    val lat = destination.lat
                     val locCode = destination.locCode
+                    val lon = destination.lon
                     val state = destination.state
+                    val farnesina = destination.farnesina
+                    val food = destination.food
+                    val news = destination.news
+                    val turistic = destination.turistic
+
                     intent.putExtra("alpha_3", alpha_3)
+                    intent.putExtra("city", city)
+                    intent.putExtra("farnesina", farnesina)
+                    intent.putExtra("food", food)
                     intent.putExtra("imageUrl", imageUrl)
+                    intent.putExtra("lat", lat)
                     intent.putExtra("locCode", locCode)
+                    intent.putExtra("lon", lon)
+                    intent.putExtra("news", news)
                     intent.putExtra("state", state)
+                    intent.putExtra("turistic", turistic)
                     val tripname = tripDatamodel.tripname
-                    val city = tripDatamodel.city
                     val depdate = tripDatamodel.depdate
                     val retdate = tripDatamodel.retdate
                     intent.putExtra("tripname", tripname)

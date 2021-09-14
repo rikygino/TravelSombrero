@@ -35,7 +35,6 @@ import android.widget.AdapterView.OnItemClickListener;
 
 public class NewsActivity extends Activity implements OnItemClickListener {
 
-    private final String URL_STRING = "https://abc7ny.com/feed/";
     private final String FILENAME = "news_feed.xml";
 
     private RSSFeed feed;
@@ -53,7 +52,12 @@ public class NewsActivity extends Activity implements OnItemClickListener {
 
         itemsListView.setOnItemClickListener(this);
 
-        new NewsActivity.DownloadFeed().execute(URL_STRING);
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            String news = extras.getString("news");
+            new NewsActivity.DownloadFeed().execute(news);
+        }
+
     }
 
     class DownloadFeed extends AsyncTask<String, Void, Void> {

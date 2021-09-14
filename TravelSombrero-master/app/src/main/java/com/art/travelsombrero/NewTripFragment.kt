@@ -97,7 +97,6 @@ class NewTripFragment : Fragment(), DestinationRecyclerViewAdapter.ClickListener
             override fun onCancelled(error: DatabaseError) {
 
             }
-
         })
 
     }
@@ -121,14 +120,27 @@ class NewTripFragment : Fragment(), DestinationRecyclerViewAdapter.ClickListener
         val alpha_3 = destinationDataModel.alpha_3
         val city = destinationDataModel.city
         val imageUrl = destinationDataModel.imageUrl
+        val lat = destinationDataModel.lat
         val locCode = destinationDataModel.locCode
+        val lon = destinationDataModel.lon
         val state = destinationDataModel.state
+        val farnesina = destinationDataModel.farnesina
+        val food = destinationDataModel.food
+        val news = destinationDataModel.news
+        val turistic = destinationDataModel.turistic
 
         intent.putExtra("alpha_3", alpha_3)
         intent.putExtra("city", city)
+        intent.putExtra("farnesina", farnesina)
+        intent.putExtra("food", food)
         intent.putExtra("imageUrl", imageUrl)
+        intent.putExtra("lat", lat)
         intent.putExtra("locCode", locCode)
+        intent.putExtra("lon", lon)
+        intent.putExtra("news", news)
         intent.putExtra("state", state)
+        intent.putExtra("turistic", turistic)
+
         startActivity(intent)
         }
 

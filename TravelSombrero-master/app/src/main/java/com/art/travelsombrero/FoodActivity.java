@@ -32,7 +32,6 @@ import android.widget.TextView;
 
 public class FoodActivity extends Activity implements AdapterView.OnItemClickListener {
 
-    private final String URL_STRING = "https://newyorkstreetfood.com/feed/";
     private final String FILENAME = "news_feed.xml";
 
     private RSSFeed feed;
@@ -50,7 +49,12 @@ public class FoodActivity extends Activity implements AdapterView.OnItemClickLis
 
         itemsListView.setOnItemClickListener(this);
 
-        new FoodActivity.DownloadFeed().execute(URL_STRING);
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            String URL_STRING = extras.getString("food");
+            new FoodActivity.DownloadFeed().execute(URL_STRING);
+        }
+
     }
 
     class DownloadFeed extends AsyncTask<String, Void, Void> {
